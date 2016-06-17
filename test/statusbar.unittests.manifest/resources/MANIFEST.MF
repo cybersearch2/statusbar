@@ -1,0 +1,7 @@
+Manifest-Version: 1.0
+Bundle-ManifestVersion: 2
+Bundle-Name: Unittests
+Bundle-SymbolicName: statusbar.unittests;singleton:=true
+Bundle-Version: 1.0.1.qualifier
+Fragment-Host: au.com.cybersearch2.statusbar;bundle-version="1.0.1"
+Bundle-RequiredExecutionEnvironment: JavaSE-1.7
