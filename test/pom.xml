@@ -32,7 +32,6 @@
                <plugin>
                    <groupId>org.codehaus.mojo</groupId>
                    <artifactId>exec-maven-plugin</artifactId>
-                   <version>1.5.0</version>
                    <inherited>false</inherited>
                    <executions>
                    <!-- Run org.reficio:p2-maven-plugin in new command shell because it uses
@@ -58,7 +57,7 @@
               </plugin>
               <plugin>
                 <artifactId>maven-resources-plugin</artifactId>
-                <version>3.0.1</version>
+                <inherited>false</inherited>
                 <executions>
                     <execution>
                     <id>copy-resources</id>
@@ -81,7 +80,6 @@
              <plugin>
                 <groupId>org.codehaus.mojo</groupId>
                 <artifactId>xml-maven-plugin</artifactId>
-                <version>1.0.1</version>
                 <inherited>false</inherited>
                 <executions>
                   <execution>
