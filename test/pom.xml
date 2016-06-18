@@ -16,6 +16,8 @@
       <temp.dir>${project.build.directory}</temp.dir>
       <repo.dir>${basedir}/../releng/statusbar.target</repo.dir>
       <repo.file>statusbar.target.target</repo.file>
+      <!-- Default maven command. Refer profiles. -->
+      <maven>mvn</maven>
     </properties>
 
     <modules>

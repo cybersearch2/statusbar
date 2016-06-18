@@ -11,6 +11,8 @@
   <felix.version>3.0.1</felix.version>
   <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
   <mars-repo.url>http://download.eclipse.org/eclipse/updates/4.5</mars-repo.url>
+  <!-- Skip the deployment here, submodules can override this property -->
+  <maven.deploy.skip>true</maven.deploy.skip>
  </properties>
 
  <repositories>
@@ -23,11 +25,48 @@
 
  <build>
   <plugins>
+  <!-- Skip the install, since we do not need the artifacts in our local mvn repo -->
+  <plugin>
+    <groupId>org.apache.maven.plugins</groupId>
+    <artifactId>maven-install-plugin</artifactId>
+    <version>2.5.2</version>
+    <configuration>
+	  <skip>true</skip>
+    </configuration>
+  </plugin>
    <plugin>
     <groupId>org.eclipse.tycho</groupId>
     <artifactId>tycho-maven-plugin</artifactId>
     <version>${tycho.version}</version>
     <extensions>true</extensions>
+   </plugin>
+   <!-- enable source feature generation -->
+   <plugin>
+	<groupId>org.eclipse.tycho.extras</groupId>
+	<artifactId>tycho-source-feature-plugin</artifactId>
+	<version>${tycho.version}</version>
+	<executions>
+		<execution>
+			<id>source-feature</id>
+			<phase>package</phase>
+			<goals>
+				<goal>source-feature</goal>
+			</goals>
+		</execution>
+	</executions>
+   </plugin>
+   <plugin>
+	<groupId>org.eclipse.tycho</groupId>
+	<artifactId>tycho-source-plugin</artifactId>
+	<version>${tycho.version}</version>
+	<executions>
+		<execution>
+			<id>plugin-source</id>
+			<goals>
+				<goal>plugin-source</goal>
+			</goals>
+		</execution>
+	</executions>
    </plugin>
   </plugins>
   <pluginManagement>
@@ -137,6 +176,32 @@
     </activation>
      <properties>
       <swt.os.arch>win32.win32.x86_64</swt.os.arch>
+    </properties>
+  </profile>
+  <profile>
+    <id>32bit-linux</id>
+    <!-- via this activation the profile is automatically used when running in 32-bit Linux -->
+    <activation>
+      <os>
+        <arch>x86</arch>
+        <family>unix</family>
+      </os>    
+    </activation>
+    <properties>
+      <swt.os.arch>gtk.linux.x86</swt.os.arch>
+    </properties>
+  </profile>
+  <profile>
+    <id>64bit-linux</id>
+    <!-- via this activation the profile is automatically used when running in 64-bit Linux -->
+    <activation>
+      <os>
+        <arch>amd64</arch>
+        <family>unix</family>
+      </os>    
+    </activation>
+     <properties>
+      <swt.os.arch>gtk.linux.x86_64</swt.os.arch>
     </properties>
   </profile>
  </profiles>
