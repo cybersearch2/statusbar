@@ -9,7 +9,7 @@
     <version>1.0.1-SNAPSHOT</version>
     <packaging>eclipse-test-plugin</packaging>
     <properties>
-        <test-repo>file:/${basedir}/../../test/p2/target/repository</test-repo>
+        <test-repo>${project.baseUri}../../test/p2/target/repository</test-repo>
     </properties>
 
     <repositories>

@@ -8,6 +8,7 @@
 
  <properties>
   <tycho.version>0.25.0</tycho.version>
+  <tycho-extras.version>0.25.0</tycho-extras.version>
   <felix.version>3.0.1</felix.version>
   <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
   <mars-repo.url>http://download.eclipse.org/eclipse/updates/4.5</mars-repo.url>
@@ -74,10 +75,6 @@
      <groupId>org.eclipse.tycho</groupId>
      <artifactId>tycho-packaging-plugin</artifactId>
      <version>${tycho.version}</version>
-     <configuration>
-       <deployableFeature>true</deployableFeature>
-     </configuration>
-    <!--
      <dependencies>
       <dependency>
        <groupId>org.eclipse.tycho.extras</groupId>
@@ -86,13 +83,13 @@
       </dependency>
      </dependencies>
      <configuration>
-      <timestampProvider>jgit</timestampProvider>
-      <jgit.ignore>
-       pom.xml
-      </jgit.ignore>
-      <jgit.dirtyWorkingTree>ignore</jgit.dirtyWorkingTree>
+       <deployableFeature>true</deployableFeature>
+       <timestampProvider>jgit</timestampProvider>
+       <jgit.ignore>
+        pom.xml
+       </jgit.ignore>
+       <jgit.dirtyWorkingTree>ignore</jgit.dirtyWorkingTree>
      </configuration>
-     -->
     </plugin>
     <plugin>
         <groupId>org.apache.maven.plugins</groupId>
@@ -134,6 +131,17 @@
        <groupId>org.codehaus.mojo</groupId>
        <artifactId>exec-maven-plugin</artifactId>
        <version>1.5.0</version>
+   </plugin>
+   <plugin>
+	  <artifactId>maven-release-plugin</artifactId>
+	  <version>2.5.2</version>
+	  <configuration>
+	      <allowTimestampedSnapshots>true</allowTimestampedSnapshots>
+	  </configuration>
+   </plugin>
+   <plugin>
+	  <artifactId>maven-jarsigner-plugin</artifactId>
+	  <version>1.2</version>
    </plugin>
   </plugins>
  </pluginManagement>

@@ -9,6 +9,52 @@
    <version>1.0.1-SNAPSHOT</version>
    <relativePath>./releng/statusbar.configuration</relativePath>
  </parent>
+  <url>http://cybersearch2.com.au</url>
+  <licenses>
+     <license>
+       <name>GPLv3</name>
+       <url>http://www.gnu.org/licenses/</url>
+       <distribution>repo</distribution>
+     </license>
+  </licenses>
+  <scm>
+	<url>https://github.com/andrew-bowley/statusbar</url>
+	<connection>scm:git:ssh://git@github.com/andrew-bowley/statusbar.git</connection>
+    <developerConnection>scm:git:ssh://git@gitserver:/opt/git/statusbar.git</developerConnection>
+    <tag>HEAD</tag>
+  </scm>
+  <distributionManagement>
+    <repository>
+        <id>${release.repo.id}</id>
+        <name>repo-releases</name>
+        <url>${release.repo.url}</url>
+    </repository>
+    <snapshotRepository>
+        <id>${snapshot.repo.id}</id>
+        <name>repo-snapshots</name>
+        <url>${snapshot.repo.url}</url>
+    </snapshotRepository>
+  </distributionManagement>  
+  <developers>
+    <developer>
+      <id>andrew-bowley</id>
+      <name>Andrew Bowley</name>
+      <url>http://cybersearch2.com.au/</url>
+      <organization>cybersearch2</organization>
+      <organizationUrl>http://cybersearch2.com.au/</organizationUrl>
+      <roles>
+        <role>architect</role>
+        <role>developer</role>
+      </roles>
+      <timezone>+10</timezone>
+    </developer>
+  </developers>
+  <properties>
+    <release.repo.id>artifactory</release.repo.id>
+    <release.repo.url>http://microserver/artifactory/libs-release-local</release.repo.url>
+    <snapshot.repo.id>artifactory</snapshot.repo.id>
+    <snapshot.repo.url>http://microserver/artifactory/libs-snapshot-local</snapshot.repo.url>
+ </properties>
  <modules>
    <module>test</module>
    <module>bundles</module>
