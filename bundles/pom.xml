@@ -14,33 +14,4 @@
         <module>statusbar.plugin</module>
         <module>statusbar.unittests</module>
     </modules>
-    <profiles>
-        <profile>
-            <!-- the standard profile runs the unit tests -->
-            <id>standard</id>
-            <activation>
-                <activeByDefault>true</activeByDefault>
-            </activation>
-            <modules>
-                <module>statusbar.plugin</module>
-                <module>statusbar.unittests</module>
-             </modules>
-        </profile>
-        <profile>
-            <!-- the release profile does sign, proguard, zipalign ... but does not 
-                run instrumentation tests -->
-            <id>release</id>
-            <!-- via this activation the profile is automatically used when the release 
-                is done with the maven release plugin -->
-            <activation>
-                <property>
-                    <name>performRelease</name>
-                    <value>true</value>
-                </property>
-            </activation>
-            <modules>
-               <module>statusbar.plugin</module>
-            </modules>
-        </profile>
-    </profiles>
 </project>
