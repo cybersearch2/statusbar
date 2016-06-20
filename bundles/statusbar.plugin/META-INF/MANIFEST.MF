@@ -2,7 +2,7 @@ Manifest-Version: 1.0
 Bundle-ManifestVersion: 2
 Bundle-Name: Statusbar
 Bundle-SymbolicName: au.com.cybersearch2.statusbar;singleton:=true
-Bundle-Version: 1.0.1.qualifier
+Bundle-Version: 1.1.0.qualifier
 Bundle-Vendor: Cybersearch2 Pty Ltd
 Export-Package: au.com.cybersearch2.controls,
  au.com.cybersearch2.statusbar,

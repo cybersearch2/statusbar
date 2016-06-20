@@ -1,11 +1,11 @@
 <project>
   <modelVersion>4.0.0</modelVersion>
   <artifactId>statusbar.unittest.manifest</artifactId>
-  <version>1.0.1-SNAPSHOT</version>
+  <version>1.1.0-SNAPSHOT</version>
   <parent>
     <groupId>au.com.cybersearch2</groupId>
     <artifactId>statusbar.test</artifactId>
-    <version>1.0.1-SNAPSHOT</version>
+    <version>1.1.0-SNAPSHOT</version>
   </parent>
   <packaging>bundle</packaging>   
   <name>Statusbar Unit Test Manifest Generator</name>
@@ -69,7 +69,6 @@
       <plugin>
         <groupId>org.apache.maven.plugins</groupId>
         <artifactId>maven-surefire-plugin</artifactId>
-        <version>2.19.1</version>
         <configuration>
           <skip>true</skip>
           <skipTests>true</skipTests>
@@ -83,6 +82,18 @@
       <id>install</id>
       <build>
         <plugins>
+          <plugin>
+            <groupId>org.codehaus.mojo</groupId>
+            <artifactId>build-helper-maven-plugin</artifactId>
+            <executions>
+              <execution>
+                <id>parse-version</id>
+                <goals>
+                  <goal>parse-version</goal>
+                </goals>
+              </execution>
+            </executions>
+          </plugin>          
           <plugin>
             <artifactId>maven-clean-plugin</artifactId>
             <configuration>
@@ -108,6 +119,8 @@
                     <niceManifest>true</niceManifest>  
                     <instructions>
                       <_include>${basedir/}resources/MANIFEST.MF</_include>
+                      <Bundle-Version>${parsedVersion.majorVersion}.${parsedVersion.minorVersion}.${parsedVersion.incrementalVersion}.qualifier</Bundle-Version>
+                      <Fragment-Host>au.com.cybersearch2.statusbar;bundle-version="${parsedVersion.majorVersion}.${parsedVersion.minorVersion}.${parsedVersion.incrementalVersion}"</Fragment-Host>
                       <Require-Bundle>org.easytesting.fest-assert-core;bundle-version="2.0.0",
                       org.easytesting.fest-util;bundle-version="1.2.5",
                       org.eclipse.emf.common;bundle-version="2.10.1",

@@ -2,10 +2,10 @@
     <modelVersion>4.0.0</modelVersion>
     <parent>
         <groupId>au.com.cybersearch2</groupId>
-        <artifactId>statusbar.releng</artifactId>
+        <artifactId>statusbar.features</artifactId>
         <version>1.1.0-SNAPSHOT</version>
     </parent>
-    <artifactId>statusbar.target</artifactId>
+    <artifactId>au.com.cybersearch2.feature</artifactId>
     <version>1.1.0-SNAPSHOT</version>
-    <packaging>eclipse-target-definition</packaging>
+    <packaging>eclipse-feature</packaging>
 </project>
