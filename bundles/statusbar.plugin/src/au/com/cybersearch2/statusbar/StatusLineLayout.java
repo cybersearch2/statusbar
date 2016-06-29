@@ -53,8 +53,9 @@ public class StatusLineLayout extends Layout
 {
     /** Height of status line in pixels. Set for 16-pixel high icons */
     public static final int STATUS_LINE_HEIGHT = 21;
+    
     /** Active shell. Shell client area provides default width. */
-    private Shell shell;
+    Shell shell;
 
     /**
      * Create ChatStatusLineLayout object

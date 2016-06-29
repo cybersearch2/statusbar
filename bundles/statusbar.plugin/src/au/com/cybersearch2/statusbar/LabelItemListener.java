@@ -15,22 +15,15 @@
     along with this program.  If not, see <http://www.gnu.org/licenses/> */
 package au.com.cybersearch2.statusbar;
 
-import org.junit.runner.RunWith;
-import org.junit.runners.Suite;
+import au.com.cybersearch2.statusbar.LabelItem.Field;
 
 /**
- * StatusBarTestSuite
+ * LabelItemListener
  * @author Andrew Bowley
- * 31 Mar 2016
+ * 26 Jun 2016
  */
-@RunWith(Suite.class)
-@Suite.SuiteClasses({
-    StatusItemTest.class,
-    StatusControlTest.class,
-    StatusBarTest.class,
-    StatusBarToolControlTest.class,
-    StatusLineLayoutTest.class
-})
-public class StatusBarTestSuite
+public interface LabelItemListener
 {
+    void onUpdate(LabelItem labelItem, Field[] updateFields);
+    void onRedraw(LabelItem labelItem);
 }

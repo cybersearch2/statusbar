@@ -23,6 +23,7 @@ import org.eclipse.swt.graphics.GC;
 import org.eclipse.swt.graphics.Image;
 import org.eclipse.swt.graphics.Point;
 import org.eclipse.swt.widgets.Composite;
+import org.eclipse.swt.widgets.Control;
 import org.eclipse.swt.widgets.Label;
 
 import au.com.cybersearch2.controls.StatusBarControlFactory;
@@ -54,28 +55,23 @@ public class ControlFactory implements StatusBarControlFactory
         return new Label(parent, SWT.SEPARATOR);
     }
 
-    /**
-     * @see au.com.cybersearch2.controls.StatusBarControlFactory#customLabelInstance(org.eclipse.swt.widgets.Composite, java.lang.String, org.eclipse.swt.graphics.Image, int)
-     */
     @Override
-    public CLabel customLabelInstance(Composite parent, String text, Image image, int widthHint)
+    public CLabel customLabelInstance(Composite parent, CustomLabelSpec specification)
     {
         CLabel label = new CLabel(parent, SWT.SHADOW_NONE);
-        StatusLineLayoutData statusLineLayoutData = new StatusLineLayoutData();
-        GC gc = new GC(parent);
-        gc.setFont(parent.getFont());
-        FontMetrics fm = gc.getFontMetrics();
-        Point extent = gc.textExtent(text);
-        if (widthHint > 0) 
-            statusLineLayoutData.widthHint = fm.getAverageCharWidth() * widthHint;
-        else 
-            statusLineLayoutData.widthHint = extent.x +label.getLeftMargin() + label.getRightMargin();
-        gc.dispose();
-
-        statusLineLayoutData.heightHint = fm.getHeight();
-        label.setLayoutData(statusLineLayoutData);
-        label.setText(text);
-        label.setImage(image);
+        label.setLayoutData(new ContributionLayoutData(label, specification));
+        label.setText(specification.getText());
+        label.setImage(specification.getImage());
         return label;
+    }
+
+    /**
+     * @see au.com.cybersearch2.controls.StatusBarControlFactory#contributionLayoutDataInstance(org.eclipse.swt.widgets.Control, java.lang.String, org.eclipse.swt.graphics.Image, int)
+     */
+    @Override
+    public ContributionLayoutData contributionLayoutDataInstance(
+            CLabel label, CustomLabelSpec specification)
+    {
+        return new ContributionLayoutData(label, specification);
     }
 }

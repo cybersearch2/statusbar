@@ -15,31 +15,33 @@
     along with this program.  If not, see <http://www.gnu.org/licenses/> */
 package au.com.cybersearch2.statusbar;
 
-import java.util.List;
-
-import org.eclipse.swt.widgets.Composite;
-
-
 /**
- * IStatusBar
- * Transfers status line content from application to StatusBarManager
- * @see StatusBarManager
+ * StatusBarException
+ * Unchecked exception for reporting exceptions.
  * @author Andrew Bowley
- * 29 Mar 2016
+ * 25 Jun 2016
  */
-public interface IStatusBar
+public class StatusBarException extends RuntimeException
 {
+    private static final long serialVersionUID = 7766636354403665648L;
+
     /**
-     * Returns status line which is arranged to fill the width of the main window client area
-     * @param parent Composite for Status Bar Tool Control
-     * @return StatusLine object populated with controls ready to render
+     * Create StatusBarException object containing only a message
+     * @param message
      */
-    StatusLine getStatusLine(Composite parent);
+    public StatusBarException(String message)
+    {
+        super(message);
+    }
+
     /**
-     * Returns list of items to insert in the status line.
-     * The last item is right-aligned to the main window.
-     * The second last item is resized to fill available free space.
-     * @return StatusLineContribution list
+     * Create StatusBarException object containing message and a cause
+     * @param message
+     * @param cause
      */
-    List<StatusLineContribution> getContributions();
+    public StatusBarException(String message, Throwable cause)
+    {
+        super(message, cause);
+    }
+
 }

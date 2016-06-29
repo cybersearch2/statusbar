@@ -5,6 +5,9 @@ import org.eclipse.swt.graphics.Image;
 import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Label;
 
+import au.com.cybersearch2.statusbar.controls.ContributionLayoutData;
+import au.com.cybersearch2.statusbar.controls.CustomLabelSpec;
+
 /**
  * StatusBarControlFactory
  * Interface to SWT widget factory for testability
@@ -36,7 +39,14 @@ public interface StatusBarControlFactory
      * @param widthHint Width in number of characters
      * @return CLabel object
      */
-    CLabel customLabelInstance(Composite parent, String text, Image image,
-            int widthHint);
+    CLabel customLabelInstance(Composite parent, CustomLabelSpec specification);
 
+    /**
+     * Create layout data for a CLabel status line contribution
+     * @param label The CLabel to which the layout data will be applied (cannot be null)
+     * @param text The text. Can be null for none.
+     * @param widthHint Width in number of characters
+     * @return ContributionLayoutData object
+     */
+    ContributionLayoutData contributionLayoutDataInstance(CLabel label, CustomLabelSpec specification);
 }
