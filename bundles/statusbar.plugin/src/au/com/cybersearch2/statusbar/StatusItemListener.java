@@ -18,11 +18,11 @@ package au.com.cybersearch2.statusbar;
 import au.com.cybersearch2.statusbar.LabelItem.Field;
 
 /**
- * LabelItemListener
+ * StatusItemListener
  * @author Andrew Bowley
  * 26 Jun 2016
  */
-public interface LabelItemListener
+public interface StatusItemListener
 {
     void onUpdate(LabelItem labelItem, Field[] updateFields);
     void onRedraw(LabelItem labelItem);

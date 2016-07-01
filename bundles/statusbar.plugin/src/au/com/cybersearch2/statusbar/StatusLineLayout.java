@@ -35,7 +35,7 @@ import org.eclipse.swt.widgets.Control;
 import org.eclipse.swt.widgets.Layout;
 import org.eclipse.swt.widgets.Shell;
 
-import au.com.cybersearch2.statusbar.controls.StatusControl;
+import au.com.cybersearch2.statusbar.controls.ControlWrapper;
 
 /**
  * ChatStatusLineLayout
@@ -96,23 +96,23 @@ public class StatusLineLayout extends Layout
             return;
 
         Control[] children = composite.getChildren();
-        StatusControl[] controls = new StatusControl[children.length];
+        ControlWrapper[] controls = new ControlWrapper[children.length];
         int count = 0;
         // Track available space in case there is insufficient room
         int left = rect.width;
         for (Control control: children)
         {
-            StatusControl statusControl = new StatusControl(control, rect.y, rect.height, changed);
-            controls[count] = statusControl;
-            int width = statusControl.getWidth();
-            if (left - width < StatusControl.GAP) 
+            ControlWrapper controlWrapper = new ControlWrapper(control, rect.y, rect.height, changed);
+            controls[count] = controlWrapper;
+            int width = controlWrapper.getWidth();
+            if (left - width < ControlWrapper.GAP) 
             { // No room for remaining controls, if any
-                statusControl.setWidth(left - StatusControl.GAP);
+                controlWrapper.setWidth(left - ControlWrapper.GAP);
                 while (++count < children.length)
                 {
-                    statusControl = new StatusControl(control, rect.y, rect.height, changed);
-                    statusControl.setWidth(0);
-                    controls[count] = statusControl;
+                    controlWrapper = new ControlWrapper(control, rect.y, rect.height, changed);
+                    controlWrapper.setWidth(0);
+                    controls[count] = controlWrapper;
                 }
                 break;
             }

@@ -21,9 +21,11 @@ import org.eclipse.swt.graphics.Font;
 import org.eclipse.swt.graphics.Image;
 import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Listener;
+import org.eclipse.swt.widgets.Menu;
 
+import au.com.cybersearch2.controls.CustomLabelSpec;
 import au.com.cybersearch2.controls.StatusBarControlFactory;
-import au.com.cybersearch2.statusbar.controls.CustomLabelSpec;
+import au.com.cybersearch2.statusbar.controls.ItemConfiguration;
 
 /**
  * StatusItem
@@ -44,11 +46,15 @@ public class StatusItem implements LabelItem
     /** Visibility flag */
     protected boolean isVisible;
     /** Listener which redraws and updates this item */
-    LabelItemListener labelItemListener;
+    StatusItemListener statusItemListener;
+    /** Listener for CLabel creation on redraw */
+    LabelListener labelListener;
     /** Listener event type */
     int eventType;
     /** Optional listener */
     Listener listener;
+    /** Optional context menu */
+    Menu menu;
     
     protected Image image;
     protected String text;
@@ -68,13 +74,13 @@ public class StatusItem implements LabelItem
     
     /**
      * Create StatusItem object
-     * @param customLabelSpec Custom label data including width in number of characters
+     * @param itemConfiguration Custom label data including width in number of characters
      * @param id Unique identity with range starting from 0 
      */
-    public StatusItem(CustomLabelSpec customLabelSpec, int id)
+    public StatusItem(CustomLabelSpec itemConfiguration, int id)
     {
         this.id = id;
-        setSpecification(customLabelSpec);
+        setSpecification(itemConfiguration);
     }
     
     /**
@@ -194,7 +200,7 @@ public class StatusItem implements LabelItem
     }
 
     /**
-     * @see au.com.cybersearch2.statusbar.LabelItem#update(au.com.cybersearch2.statusbar.controls.CustomLabelSpec)
+     * @see au.com.cybersearch2.statusbar.LabelItem#update(au.com.cybersearch2.statusbar.controls.ItemConfiguration)
      */
     @Override
     public void update(CustomLabelSpec updateSpec)
@@ -204,14 +210,24 @@ public class StatusItem implements LabelItem
     }
 
     /**
-     * @see au.com.cybersearch2.statusbar.LabelItem#setLabelItemListener(au.com.cybersearch2.statusbar.LabelItemListener)
+     * @see au.com.cybersearch2.statusbar.LabelItem#setLabelItemListener(au.com.cybersearch2.statusbar.StatusItemListener)
      */
     @Override
-    public void setLabelItemListener(LabelItemListener labelItemListener)
+    public void setLabelItemListener(final StatusItemListener statusItemListener)
     {
-        this.labelItemListener = labelItemListener;
+        this.statusItemListener = statusItemListener; 
     }
 
+    LabelListener getLabelListener()
+    {
+        return labelListener;
+    }
+    
+    StatusItemListener getLabelItemListener()
+    {
+        return statusItemListener;
+    }
+    
     /**
      * Add listener
      * @param eventType Listener event type 
@@ -224,6 +240,12 @@ public class StatusItem implements LabelItem
         this.listener = listener;
     }
 
+    @Override
+    public void setLabelListener(LabelListener labelListener)
+    {
+        this.labelListener = labelListener;
+    }
+    
     /**
       * @see au.com.cybersearch2.statusbar.LabelItem#setTooltip(java.lang.String)
      */
@@ -247,13 +269,31 @@ public class StatusItem implements LabelItem
     }
 
     /**
+     * @see au.com.cybersearch2.statusbar.LabelItem#setMenu(org.eclipse.swt.widgets.Menu)
+     */
+    @Override
+    public void setMenu(Menu menu)
+    {
+        this.menu = menu;
+    }
+    
+    /**
+     * @see au.com.cybersearch2.statusbar.LabelItem#getMenu()
+     */
+    @Override
+    public Menu getMenu()
+    {
+        return menu;
+    }
+    
+    /**
      * @see au.com.cybersearch2.statusbar.LabelItem#labelInstance(au.com.cybersearch2.controls.StatusBarControlFactory, org.eclipse.swt.widgets.Composite)
      */
     @Override
     public CLabel labelInstance(StatusBarControlFactory controlFactory,
             Composite parent)
     {
-        CLabel label = controlFactory.customLabelInstance(parent, new CustomLabelSpec(image, text, width));
+        CLabel label = controlFactory.customLabelInstance(parent, new ItemConfiguration(image, text, width));
         if (bgColor != null)
             label.setBackground(bgColor);
         if (font != null)
@@ -267,15 +307,15 @@ public class StatusItem implements LabelItem
 
     /**
      * Set fields from given specification
-     * @param customLabelSpec The specification
+     * @param itemConfiguration The specification
      */
-    protected void setSpecification(CustomLabelSpec customLabelSpec)
+    protected void setSpecification(CustomLabelSpec itemConfiguration)
     {
-        image = customLabelSpec.getImage();
-        text = customLabelSpec.getText();
-        width = customLabelSpec.getWidth();
-        font = customLabelSpec.getFont();
-        bgColor = customLabelSpec.getBackground();
+        image = itemConfiguration.getImage();
+        text = itemConfiguration.getText();
+        width = itemConfiguration.getWidth();
+        font = itemConfiguration.getFont();
+        bgColor = itemConfiguration.getBackground();
         isVisible = getVisibility(); 
     }
  
@@ -309,8 +349,8 @@ public class StatusItem implements LabelItem
      */
     protected void signalRedraw()
     {
-        if (labelItemListener != null)
-            labelItemListener.onRedraw(this);
+        if (statusItemListener != null)
+            statusItemListener.onRedraw(this);
     }
 
     /**
@@ -319,7 +359,9 @@ public class StatusItem implements LabelItem
      */
     protected void signalUpdate(Field[] updateFields)
     {
-        if (labelItemListener != null)
-            labelItemListener.onUpdate(this, updateFields);
+        if (statusItemListener != null)
+            statusItemListener.onUpdate(this, updateFields);
     }
+
+
 }

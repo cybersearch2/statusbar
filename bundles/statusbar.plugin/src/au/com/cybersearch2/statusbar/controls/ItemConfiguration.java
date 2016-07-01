@@ -19,13 +19,15 @@ import org.eclipse.swt.graphics.Color;
 import org.eclipse.swt.graphics.Font;
 import org.eclipse.swt.graphics.Image;
 
+import au.com.cybersearch2.controls.CustomLabelSpec;
+
 /**
- * CustomLabelSpec
+ * ItemConfiguration
  * Custom label data including width in number of characters
  * @author Andrew Bowley
  * 24 Mar 2016
  */
-public class CustomLabelSpec
+public class ItemConfiguration implements CustomLabelSpec
 {
     private Image image;
     private String text;
@@ -34,12 +36,12 @@ public class CustomLabelSpec
     private Color bgColor;
     
     /**
-     * Create a CustomLabelSpec object
+     * Create a ItemConfiguration object
      * @param image Label mage or null
      * @param text Label text or null 
      * @param width Width of Label in characters
      */
-    public CustomLabelSpec(Image image, String text, int width)
+    public ItemConfiguration(Image image, String text, int width)
     {
         this.image = image;
         this.text = text;
@@ -47,93 +49,102 @@ public class CustomLabelSpec
     }
 
     /**
-     * @return the image
+     * @see au.com.cybersearch2.controls.CustomLabelSpec#getImage()
      */
+    @Override
     public Image getImage()
     {
         return image;
     }
 
     /**
-     * @return the text
+     * @see au.com.cybersearch2.controls.CustomLabelSpec#getText()
      */
+    @Override
     public String getText()
     {
         return text;
     }
 
     /**
-     * @return the width hint in number of characters
+     * @see au.com.cybersearch2.controls.CustomLabelSpec#getWidth()
      */
+    @Override
     public int getWidth()
     {
         return width;
     }
 
     /**
-     * Set image
-     * @param image Image object
+     * @see au.com.cybersearch2.controls.CustomLabelSpec#setImage(org.eclipse.swt.graphics.Image)
      */
+    @Override
     public void setImage(Image image)
     {
         this.image = image;
     }
 
     /**
-     * Set the text
-     * @param text String
+     * @see au.com.cybersearch2.controls.CustomLabelSpec#setText(java.lang.String)
      */
+    @Override
     public void setText(String text)
     {
         this.text = text;
     }
 
     /**
-     * Set width hint
-     * @param width Width in number of characters
+     * @see au.com.cybersearch2.controls.CustomLabelSpec#setWidth(int)
      */
+    @Override
     public void setWidth(int width)
     {
         this.width = width;
     }
 
     /**
-     * @return the font
+     * @see au.com.cybersearch2.controls.CustomLabelSpec#getFont()
      */
+    @Override
     public Font getFont()
     {
         return font;
     }
 
     /**
-     * Set the font
-     * @param font Font object
+     * @see au.com.cybersearch2.controls.CustomLabelSpec#setFont(org.eclipse.swt.graphics.Font)
      */
+    @Override
     public void setFont(Font font)
     {
         this.font = font;
     }
 
     /**
-      * @return the background color
-      */
+     * @see au.com.cybersearch2.controls.CustomLabelSpec#getBackground()
+     */
+    @Override
     public Color getBackground()
     {
         return bgColor;
     }
 
     /**
-     * Set the background color
-     * @param bgColor Color object
+     * @see au.com.cybersearch2.controls.CustomLabelSpec#setBackground(org.eclipse.swt.graphics.Color)
      */
+    @Override
     public void setBackground(Color bgColor)
     {
         this.bgColor = bgColor;
     }
 
+    /**
+     * @see au.com.cybersearch2.controls.CustomLabelSpec#dup()
+     */
+    @Override
     public CustomLabelSpec dup()
     {
-        CustomLabelSpec copy = new CustomLabelSpec(image, text, width);
+        CustomLabelSpec copy = new ItemConfiguration(image, text, width);
         copy.setBackground(bgColor);
         return copy;
     }
@@ -141,7 +152,7 @@ public class CustomLabelSpec
     @Override
     public boolean equals(Object obj)
     {
-        if ((obj == null) || !(obj instanceof CustomLabelSpec))
+        if ((obj == null) || !(obj instanceof ItemConfiguration))
             return false;
         CustomLabelSpec other = (CustomLabelSpec)obj;
         if (text != null) 

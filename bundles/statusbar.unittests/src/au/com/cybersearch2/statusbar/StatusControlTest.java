@@ -20,7 +20,6 @@ import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
 
-import org.eclipse.jface.action.StatusLineLayoutData;
 import org.eclipse.swt.custom.CLabel;
 import org.eclipse.swt.graphics.Image;
 import org.eclipse.swt.widgets.Composite;
@@ -29,6 +28,7 @@ import org.eclipse.swt.widgets.Label;
 import org.junit.Test;
 import org.mockito.ArgumentCaptor;
 
+import au.com.cybersearch2.controls.LabelLayoutData;
 import au.com.cybersearch2.controls.StatusBarControlFactory;
 import au.com.cybersearch2.statusbar.LabelItem.Field;
 
@@ -55,11 +55,11 @@ public class StatusControlTest
         underTest.seperator = seperator;
         CLabel label = mock(CLabel.class);
         when(statusItem.labelInstance(controlFactory, parent)).thenReturn(label);
-        StatusLineLayoutData layoutData = mock(StatusLineLayoutData.class);
+        LabelLayoutData layoutData = new LabelLayoutData();
         layoutData.heightHint = 16;
         when(label.getLayoutData()).thenReturn(layoutData);
         underTest.fill(controlFactory, parent);
-        ArgumentCaptor<StatusLineLayoutData> layoutDataCaptor = ArgumentCaptor.forClass(StatusLineLayoutData.class);
+        ArgumentCaptor<LabelLayoutData> layoutDataCaptor = ArgumentCaptor.forClass(LabelLayoutData.class);
         verify(seperator).setLayoutData(layoutDataCaptor.capture());
         assertThat(layoutDataCaptor.getValue().heightHint).isEqualTo(16);
         assertThat(underTest.getStatusItem()).isEqualTo(statusItem);
@@ -109,12 +109,12 @@ public class StatusControlTest
         when(controlFactory.separatorInstance(parent)).thenReturn(seperator);
         CLabel label = mock(CLabel.class);
         when(statusItem.labelInstance(controlFactory, parent)).thenReturn(label);
-        StatusLineLayoutData layoutData = mock(StatusLineLayoutData.class);
+        LabelLayoutData layoutData = new LabelLayoutData();
         layoutData.heightHint = 16;
         when(label.getLayoutData()).thenReturn(layoutData);
         underTest.separate(controlFactory, parent);
         underTest.fill(controlFactory, parent);
-        ArgumentCaptor<StatusLineLayoutData> layoutDataCaptor = ArgumentCaptor.forClass(StatusLineLayoutData.class);
+        ArgumentCaptor<LabelLayoutData> layoutDataCaptor = ArgumentCaptor.forClass(LabelLayoutData.class);
         verify(seperator).setLayoutData(layoutDataCaptor.capture());
         assertThat(layoutDataCaptor.getValue().heightHint).isEqualTo(16);
         verify(originalLabel).dispose();

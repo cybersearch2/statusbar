@@ -19,7 +19,6 @@ import static org.fest.assertions.api.Assertions.assertThat;
 
 import static org.mockito.Mockito.*;
 
-import org.eclipse.jface.action.StatusLineLayoutData;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.graphics.Point;
 import org.eclipse.swt.graphics.Rectangle;
@@ -27,6 +26,8 @@ import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Control;
 import org.eclipse.swt.widgets.Shell;
 import org.junit.Test;
+
+import au.com.cybersearch2.controls.LabelLayoutData;
 
 /**
  * ChatStatusLineLayoutTest
@@ -76,31 +77,31 @@ public class StatusLineLayoutTest
         Control[] children = new Control[5];
         Control control1 = mock(Control.class);
         when(control1.computeSize(C1_WIDTH, 16, false)).thenReturn(new Point(C1_WIDTH, 16));
-        StatusLineLayoutData c1Layout = new StatusLineLayoutData();
+        LabelLayoutData c1Layout = new LabelLayoutData();
         c1Layout.widthHint = C1_WIDTH;
         when(control1.getLayoutData()).thenReturn(c1Layout);
         children[0] = control1;
         Control seperator1 = mock(Control.class);
         when(seperator1.computeSize(SWT.DEFAULT, 16, false)).thenReturn(new Point(0, 16));
-        StatusLineLayoutData s1Layout = new StatusLineLayoutData();
+        LabelLayoutData s1Layout = new LabelLayoutData();
         s1Layout.widthHint = SWT.DEFAULT;
         when(seperator1.getLayoutData()).thenReturn(s1Layout);
         children[1] = seperator1;
         Control control2 = mock(Control.class);
         when(control2.computeSize(C2_WIDTH, 16, false)).thenReturn(new Point(C2_WIDTH, 16));
-        StatusLineLayoutData c2Layout = new StatusLineLayoutData();
+        LabelLayoutData c2Layout = new LabelLayoutData();
         c2Layout.widthHint = C2_WIDTH;
         when(control2.getLayoutData()).thenReturn(c2Layout);
         children[2] = control2;
         Control seperator2 = mock(Control.class);
         when(seperator2.computeSize(SWT.DEFAULT, 16, false)).thenReturn(new Point(0, 16));
-        StatusLineLayoutData s2Layout = new StatusLineLayoutData();
+        LabelLayoutData s2Layout = new LabelLayoutData();
         s2Layout.widthHint = SWT.DEFAULT;
         when(seperator2.getLayoutData()).thenReturn(s2Layout);
         children[3] = seperator2;
         Control control3 = mock(Control.class);
         when(control3.computeSize(C3_WIDTH, 16, false)).thenReturn(new Point(C3_WIDTH, 16));
-        StatusLineLayoutData c3Layout = new StatusLineLayoutData();
+        LabelLayoutData c3Layout = new LabelLayoutData();
         c3Layout.widthHint = C3_WIDTH;
         when(control3.getLayoutData()).thenReturn(c3Layout);
         children[4] = control3;

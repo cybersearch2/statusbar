@@ -45,10 +45,10 @@ public class StatusBarToolControl
         statusBar.setToolControl(this);
 	}
 
-    public void redraw(List<StatusControl> controlList)
+    public boolean redraw(List<StatusControl> controlList)
     {
         if (composite == null)
-            return;
+            return false;
         composite.setRedraw(false);
         // Dispose of all status line controls containing StatusControl data
         for (Control control: composite.getChildren())
@@ -69,6 +69,7 @@ public class StatusBarToolControl
             }
         composite.layout();
         composite.setRedraw(true);
+        return true;
     }
 
     /**

@@ -15,13 +15,14 @@
     along with this program.  If not, see <http://www.gnu.org/licenses/> */
 package au.com.cybersearch2.statusbar;
 
-import org.eclipse.jface.action.StatusLineLayoutData;
 import org.eclipse.swt.custom.CLabel;
 import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Label;
 
+import au.com.cybersearch2.controls.LabelLayoutData;
 import au.com.cybersearch2.controls.StatusBarControlFactory;
 import au.com.cybersearch2.statusbar.LabelItem.Field;
+import au.com.cybersearch2.statusbar.controls.StatusItemLayoutData;
 
 /**
  * StatusControl
@@ -54,7 +55,14 @@ public class StatusControl
     {
         return statusItem;
     }
-    
+ 
+    /**
+     * @return the label
+     */
+    public CLabel getLabel()
+    {
+        return label;
+    }
     /**
      * @return isVisible flag
      */
@@ -71,13 +79,13 @@ public class StatusControl
     public void fill(StatusBarControlFactory controlFactory, Composite parent) 
     {   
         if (label != null)
-            label.dispose();
+             disposeLabel();
         label = statusItem.labelInstance(controlFactory, parent);
         if (seperator != null)
         {
             // Separator is same height as label and width determine by layout setter
-            StatusLineLayoutData statusLineLayoutData = new StatusLineLayoutData();
-            statusLineLayoutData.heightHint = ((StatusLineLayoutData)label.getLayoutData()).heightHint;
+            StatusItemLayoutData statusLineLayoutData = new StatusItemLayoutData();
+            statusLineLayoutData.heightHint = ((LabelLayoutData)label.getLayoutData()).heightHint;
             seperator.setLayoutData(statusLineLayoutData);
         }
     }
@@ -117,9 +125,17 @@ public class StatusControl
      */
     public void dispose()
     {
-        if (seperator != null)
+        if ((seperator != null) && !seperator.isDisposed())
             seperator.dispose();
-        if (label != null)
+        disposeLabel();
+    }
+
+    /**
+     * Dispose widgets
+     */
+    public void disposeLabel()
+    {
+        if ((label != null) && !label.isDisposed())
             label.dispose();
     }
 }

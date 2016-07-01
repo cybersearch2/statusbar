@@ -19,9 +19,10 @@ import org.eclipse.swt.custom.CLabel;
 import org.eclipse.swt.graphics.Image;
 import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Listener;
+import org.eclipse.swt.widgets.Menu;
 
+import au.com.cybersearch2.controls.CustomLabelSpec;
 import au.com.cybersearch2.controls.StatusBarControlFactory;
-import au.com.cybersearch2.statusbar.controls.CustomLabelSpec;
 
 /**
  * LabelItem
@@ -95,9 +96,9 @@ interface LabelItem
  
     /**
      * Set listener to be called when this object is updated
-     * @param labelItemListener
+     * @param statusItemListener
      */
-    void setLabelItemListener(LabelItemListener labelItemListener);
+    void setLabelItemListener(StatusItemListener statusItemListener);
 
     /**
      * Add listener
@@ -106,6 +107,8 @@ interface LabelItem
      */
     void setEventListener(int eventType, Listener listener); 
 
+ 
+    void setLabelListener(LabelListener labelListener);
     
     /**
      * Set tooltip
@@ -117,7 +120,18 @@ interface LabelItem
      * @return the tooltep
      */
     String getTooltip();
+
+    /**
+     * Set context menu, which will pop up when the item is right clicked
+     * @param menu Menu object
+     */
+    void setMenu(Menu menu);
  
+    /**
+     * @return the context memu or null if none
+     */
+    Menu getMenu();
+
     /**
      * Return custom label initialized with values contained in this item
      * @param controlFactory SWT widget factory

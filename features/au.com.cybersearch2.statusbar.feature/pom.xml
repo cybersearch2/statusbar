@@ -5,7 +5,7 @@
         <artifactId>statusbar.features</artifactId>
         <version>1.1.0-SNAPSHOT</version>
     </parent>
-    <artifactId>au.com.cybersearch2.feature</artifactId>
+    <artifactId>au.com.cybersearch2.statusbar.feature</artifactId>
     <version>1.1.0-SNAPSHOT</version>
     <packaging>eclipse-feature</packaging>
 </project>

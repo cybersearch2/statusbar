@@ -15,29 +15,39 @@
     along with this program.  If not, see <http://www.gnu.org/licenses/> */
 package au.com.cybersearch2.statusbar.controls;
 
-import org.eclipse.jface.action.StatusLineLayoutData;
 import org.eclipse.swt.custom.CLabel;
 import org.eclipse.swt.graphics.FontMetrics;
 import org.eclipse.swt.graphics.GC;
 import org.eclipse.swt.graphics.Image;
 import org.eclipse.swt.widgets.Composite;
 
+import au.com.cybersearch2.controls.CustomLabelSpec;
+import au.com.cybersearch2.controls.LabelLayoutData;
+
 /**
- * ContributionLayoutData
+ * StatusItemLayoutData
  * Customises Status Line layout data to adjust height and width hints according to font
  * @author Andrew Bowley
  * 25 May 2016
  */
-public class ContributionLayoutData extends StatusLineLayoutData
+public class StatusItemLayoutData extends LabelLayoutData
 {
 
     /**
-     * Create ContributionLayoutData object
+     * Create default StatusItemLayoutData object
+     */
+    public StatusItemLayoutData()
+    {
+        super();
+    }
+    
+    /**
+     * Create StatusItemLayoutData object
      * @param label A label control which supports aligned text and/or an image
      * @param text Text to display in control
      * @param widthHint Given width hint in characters. A value of 0 means use text width.
      */
-    public ContributionLayoutData(CLabel label, CustomLabelSpec specification)
+    public StatusItemLayoutData(CLabel label, CustomLabelSpec specification)
     {
         Composite parent = label.getParent();
         GC gc = new GC(parent);

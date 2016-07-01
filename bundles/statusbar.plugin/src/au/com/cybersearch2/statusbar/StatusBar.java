@@ -20,6 +20,8 @@ import java.util.List;
 
 import javax.annotation.PostConstruct;
 
+import org.eclipse.swt.custom.CLabel;
+
 import au.com.cybersearch2.statusbar.LabelItem.Field;
 
 /**
@@ -28,7 +30,7 @@ import au.com.cybersearch2.statusbar.LabelItem.Field;
  * @author Andrew Bowley
  * 27 Jun 2016
  */
-public class StatusBar implements LabelItemListener
+public class StatusBar implements StatusItemListener
 {
     /** Default number of status line items. Call {@link #setCapacity(int)} to adjust. */
     public static int DEFAULT_MAX_ITEMS = 5;
@@ -43,7 +45,6 @@ public class StatusBar implements LabelItemListener
  
     /**
      * postConstruct
-     * @param controlFactory SWT widget factory
      */
     @PostConstruct
     void postConstruct()
@@ -108,7 +109,7 @@ public class StatusBar implements LabelItemListener
     public void addStatusItem(StatusItem statusItem)
     {
         int index = statusItem.getId();
-        validateId(index);
+        validateId(index, false);
         statusItem.setLabelItemListener(this);
         StatusControl newControl = new StatusControl(statusItem);
         if (index == controlList.size())
@@ -127,39 +128,61 @@ public class StatusBar implements LabelItemListener
                 controlList.add(null);
             controlList.add(newControl);
         }
+        if (statusItem.isVisible() && (statusBarToolControl != null))
+            onRedraw(statusItem);
     }
 
     /**
-     * @see au.com.cybersearch2.statusbar.LabelItemListener#onUpdate(au.com.cybersearch2.statusbar.LabelItem, au.com.cybersearch2.statusbar.LabelItem.Field[])
+     * @see au.com.cybersearch2.statusbar.StatusItemListener#onUpdate(au.com.cybersearch2.statusbar.LabelItem, au.com.cybersearch2.statusbar.LabelItem.Field[])
      */
     @Override
     public void onUpdate(LabelItem labelItem, Field[] updateFields)
     {
         int index = labelItem.getId();
-        validateId(index);
+        validateId(index, true);
         controlList.get(index).update(updateFields);
     }
 
     /**
-     * @see au.com.cybersearch2.statusbar.LabelItemListener#onRedraw(au.com.cybersearch2.statusbar.LabelItem)
+     * @see au.com.cybersearch2.statusbar.StatusItemListener#onRedraw(au.com.cybersearch2.statusbar.LabelItem)
      */
     @Override
     public void onRedraw(LabelItem labelItem)
     {
-        validateId(labelItem.getId());
-        if (statusBarToolControl != null)
-            statusBarToolControl.redraw(controlList);
+        validateId(labelItem.getId(), false);
+        if ((statusBarToolControl != null) && statusBarToolControl.redraw(controlList))
+            signalLabelCreate();
     }
 
     /**
      * Validate status item id
      * @param id int value
+     * @param nullCheck Flag set true if item must exist
      */
-    void validateId(int id)
+    void validateId(int id, boolean nullCheck)
     {
         if ((id < 0) || (id >= capacity))
             throw new StatusBarException("Id = " + id + " is outside range of 0 - " + (capacity - 1));
+        if (nullCheck && (controlList.get(id) == null))
+            throw new StatusBarException("Status Item id = " + id + " not found");
     }
 
-
+    /**
+     * Signal label created to all visible items with LabelListener assigned
+     */
+    void signalLabelCreate()
+    {
+        for (StatusControl statusControl: controlList)
+        {
+            if ((statusControl != null) && (statusControl.isVisible()))
+            {
+                StatusItem statusItem = statusControl.getStatusItem();
+                if (statusItem.getLabelListener() != null)
+                {
+                    CLabel label = statusControl.getLabel();
+                    statusItem.getLabelListener().onLabelCreate(label);
+                }
+            }
+        }
+    }
 }
