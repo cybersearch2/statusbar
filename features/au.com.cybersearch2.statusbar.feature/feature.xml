@@ -6,7 +6,7 @@
       provider-name="Cybersearch2 Pty Ltd">
 
    <description url="http://www.cybersearch2.com.au">
-      This feature contains a fragment plugin to add a status line to a pure E4 application. Simple add to the main window a "Window Trim - Bottom" with ID "au.com.cybersearch2.cybertete.trimbar.1".
+      This feature contains a fragment plugin to add a status line to a pure E4 application. Simply add to the main window a "Window Trim - Bottom" with ID "au.com.cybersearch2.cybertete.trimbar.1".
    </description>
 
    <copyright url="http://www.cybersearch2.com.au">

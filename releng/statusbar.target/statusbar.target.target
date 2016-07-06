@@ -1,16 +1,18 @@
-<?pde version="3.8"?><target name="statusbar.target" sequenceNumber="27">
-   <locations>
-      <location includeAllPlatforms="true" includeConfigurePhase="false" includeMode="slicer"
-                includeSource="true"
-                type="InstallableUnit">
-         <unit id="org.eclipse.ecf.core.feature.feature.group" version="1.2.0.v20151130-0157"/>
-         <unit id="org.eclipse.rcp.feature.group" version="4.5.2.v20160212-1500"/>
-         <unit id="org.eclipse.ecf.filetransfer.httpclient4.feature.feature.group"
-               version="3.12.0.v20151130-0157"/>
-         <unit id="org.eclipse.jdt.source.feature.group" version="3.11.2.v20160212-1500"/>
-         <unit id="org.eclipse.emf.ecore.feature.group" version="2.11.2.v20160208-0816"/>
-         <unit id="org.eclipse.emf.common.feature.group" version="2.11.1.v20160208-0816"/>
-         <repository location="http://download.eclipse.org/eclipse/updates/4.5"/>
-      </location>
-   </locations>
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<?pde version="3.8"?><target name="statusbar.target" sequenceNumber="1">
+<locations>
+<location includeAllPlatforms="true" includeConfigurePhase="false" includeMode="slicer" includeSource="true" type="InstallableUnit">
+<unit id="org.eclipse.ecf.core.feature.feature.group" version="1.2.0.v20151130-0157"/>
+<unit id="org.eclipse.rcp.feature.group" version="4.5.2.v20160212-1500"/>
+<unit id="org.eclipse.ecf.filetransfer.httpclient4.feature.feature.group" version="3.12.0.v20151130-0157"/>
+<unit id="org.eclipse.jdt.source.feature.group" version="3.11.2.v20160212-1500"/>
+<unit id="org.eclipse.emf.ecore.feature.group" version="2.11.2.v20160208-0816"/>
+<unit id="org.eclipse.emf.common.feature.group" version="2.11.1.v20160208-0816"/>
+<repository location="http://download.eclipse.org/eclipse/updates/4.5"/>
+</location>
+<location includeAllPlatforms="true" includeConfigurePhase="false" includeMode="slicer" includeSource="true" type="InstallableUnit">
+<unit id="au.com.cybersearch2.control_factory.feature.feature.group" version="1.0.1.201607060442"/>
+<repository location="https://dl.bintray.com/content/andrew-bowley/generic/Control_Factory/v1.0.1/"/>
+</location>
+</locations>
 </target>
