@@ -38,7 +38,7 @@ import org.junit.Test;
 import org.mockito.ArgumentCaptor;
 
 import au.com.cybersearch2.controls.CustomLabelSpec;
-import au.com.cybersearch2.controls.StatusBarControlFactory;
+import au.com.cybersearch2.controls.ControlFactory;
 import au.com.cybersearch2.statusbar.LabelItem.Field;
 import au.com.cybersearch2.statusbar.controls.ItemConfiguration;
 
@@ -359,7 +359,7 @@ public class StatusItemTest
     @Test
     public void test_labelInstance()
     {
-        StatusBarControlFactory controlFactory = mock(StatusBarControlFactory.class);
+        ControlFactory controlFactory = mock(ControlFactory.class);
         CLabel label = mock(CLabel.class);
         Composite parent = mock(Composite.class);
         when(controlFactory.customLabelInstance(eq(parent), isA(ItemConfiguration.class))).thenReturn(label);
@@ -382,7 +382,7 @@ public class StatusItemTest
     @Test
     public void test_labelInstance_nulls()
     {
-        StatusBarControlFactory controlFactory = mock(StatusBarControlFactory.class);
+        ControlFactory controlFactory = mock(ControlFactory.class);
         CLabel label = mock(CLabel.class);
         Composite parent = mock(Composite.class);
         when(controlFactory.customLabelInstance(eq(parent), isA(ItemConfiguration.class))).thenReturn(label);

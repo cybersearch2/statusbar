@@ -20,7 +20,7 @@ import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Label;
 
 import au.com.cybersearch2.controls.LabelLayoutData;
-import au.com.cybersearch2.controls.StatusBarControlFactory;
+import au.com.cybersearch2.controls.ControlFactory;
 import au.com.cybersearch2.statusbar.LabelItem.Field;
 import au.com.cybersearch2.statusbar.controls.StatusItemLayoutData;
 
@@ -76,7 +76,7 @@ public class StatusControl
      * @param controlFactory SWT widget factory
      * @param parent Parent composite
      */
-    public void fill(StatusBarControlFactory controlFactory, Composite parent) 
+    public void fill(ControlFactory controlFactory, Composite parent) 
     {   
         if (label != null)
              disposeLabel();
@@ -95,7 +95,7 @@ public class StatusControl
      * @param controlFactory SWT widget factory
      * @param parent Parent composite
      */
-    public void separate(StatusBarControlFactory controlFactory, Composite parent) 
+    public void separate(ControlFactory controlFactory, Composite parent) 
     {   
         if (seperator != null)
             seperator.dispose();

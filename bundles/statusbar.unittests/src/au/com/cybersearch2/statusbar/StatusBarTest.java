@@ -27,7 +27,7 @@ import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Display;
 import org.junit.Test;
 
-import au.com.cybersearch2.controls.StatusBarControlFactory;
+import au.com.cybersearch2.controls.ControlFactory;
 import au.com.cybersearch2.statusbar.LabelItem.Field;
 
 /**
@@ -139,7 +139,7 @@ public class StatusBarTest
         when(statusItem.getImage()).thenReturn(image);
         when(statusItem.getTooltip()).thenReturn(TOOL_TIP);
         underTest.addStatusItem(statusItem);
-        StatusBarControlFactory controlFactory = mock(StatusBarControlFactory.class);
+        ControlFactory controlFactory = mock(ControlFactory.class);
         Composite parent = mock(Composite.class);
         CLabel label = mock(CLabel.class);
         when(statusItem.labelInstance(controlFactory, parent)).thenReturn(label);

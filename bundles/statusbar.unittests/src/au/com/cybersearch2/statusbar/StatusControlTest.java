@@ -29,7 +29,7 @@ import org.junit.Test;
 import org.mockito.ArgumentCaptor;
 
 import au.com.cybersearch2.controls.LabelLayoutData;
-import au.com.cybersearch2.controls.StatusBarControlFactory;
+import au.com.cybersearch2.controls.ControlFactory;
 import au.com.cybersearch2.statusbar.LabelItem.Field;
 
 /**
@@ -45,7 +45,7 @@ public class StatusControlTest
     @Test
     public void test_fill()
     {
-        StatusBarControlFactory controlFactory = mock(StatusBarControlFactory.class);
+        ControlFactory controlFactory = mock(ControlFactory.class);
         StatusItem statusItem = mock(StatusItem.class);
         when(statusItem.getId()).thenReturn(1);
         when(statusItem.isVisible()).thenReturn(true);
@@ -70,7 +70,7 @@ public class StatusControlTest
     @Test
     public void test_separate()
     {
-        StatusBarControlFactory controlFactory = mock(StatusBarControlFactory.class);
+        ControlFactory controlFactory = mock(ControlFactory.class);
         StatusItem statusItem = mock(StatusItem.class);
         StatusControl underTest = new StatusControl(statusItem);
         Composite parent = mock(Composite.class);
@@ -84,7 +84,7 @@ public class StatusControlTest
     @Test
     public void test_fill_first_item()
     {
-        StatusBarControlFactory controlFactory = mock(StatusBarControlFactory.class);
+        ControlFactory controlFactory = mock(ControlFactory.class);
         StatusItem statusItem = mock(StatusItem.class);
         StatusControl underTest = new StatusControl(statusItem);
         Composite parent = mock(Composite.class);
@@ -96,7 +96,7 @@ public class StatusControlTest
     @Test
     public void test_fill_reuse()
     {
-        StatusBarControlFactory controlFactory = mock(StatusBarControlFactory.class);
+        ControlFactory controlFactory = mock(ControlFactory.class);
         StatusItem statusItem = mock(StatusItem.class);
         when(statusItem.getId()).thenReturn(1);
         StatusControl underTest = new StatusControl(statusItem);

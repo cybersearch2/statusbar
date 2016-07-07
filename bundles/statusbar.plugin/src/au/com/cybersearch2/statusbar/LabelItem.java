@@ -22,7 +22,7 @@ import org.eclipse.swt.widgets.Listener;
 import org.eclipse.swt.widgets.Menu;
 
 import au.com.cybersearch2.controls.CustomLabelSpec;
-import au.com.cybersearch2.controls.StatusBarControlFactory;
+import au.com.cybersearch2.controls.ControlFactory;
 
 /**
  * LabelItem
@@ -138,5 +138,5 @@ interface LabelItem
      * @param parent Parent composite
      * @return
      */
-    CLabel labelInstance(StatusBarControlFactory controlFactory, Composite parent);
+    CLabel labelInstance(ControlFactory controlFactory, Composite parent);
 }

@@ -34,7 +34,7 @@ import org.eclipse.swt.widgets.Shell;
 import org.junit.Test;
 import org.mockito.ArgumentCaptor;
 
-import au.com.cybersearch2.controls.StatusBarControlFactory;
+import au.com.cybersearch2.controls.ControlFactory;
 
 
 /**
@@ -48,7 +48,7 @@ public class StatusBarToolControlTest
     public void test_createGui()
     {
         StatusBarToolControl underTest = new StatusBarToolControl();
-        StatusBarControlFactory controlFactory = mock(StatusBarControlFactory.class);
+        ControlFactory controlFactory = mock(ControlFactory.class);
         StatusBar statusBar = mock(StatusBar.class);
         Composite parent = mock(Composite.class);
         Shell shell = mock(Shell.class);
@@ -74,7 +74,7 @@ public class StatusBarToolControlTest
     public void test_fill()
     {
         StatusBarToolControl underTest = new StatusBarToolControl();
-        StatusBarControlFactory controlFactory = mock(StatusBarControlFactory.class);
+        ControlFactory controlFactory = mock(ControlFactory.class);
         underTest.controlFactory = controlFactory;
         Composite composite = mock(Composite.class);
         underTest.composite = composite;
@@ -93,7 +93,7 @@ public class StatusBarToolControlTest
     public void test_redraw()
     {
         StatusBarToolControl underTest = new StatusBarToolControl();
-        StatusBarControlFactory controlFactory = mock(StatusBarControlFactory.class);
+        ControlFactory controlFactory = mock(ControlFactory.class);
         underTest.controlFactory = controlFactory;
         Composite composite = mock(Composite.class);
         Control control1 = mock(Control.class);
@@ -128,7 +128,7 @@ public class StatusBarToolControlTest
         StatusControl statusControl2 = mock(StatusControl.class);
         when(statusControl2.isVisible()).thenReturn(true);
         StatusBarToolControl underTest = new StatusBarToolControl();
-        StatusBarControlFactory controlFactory = mock(StatusBarControlFactory.class);
+        ControlFactory controlFactory = mock(ControlFactory.class);
         underTest.controlFactory = controlFactory;
         Composite composite = mock(Composite.class);
         Control control01 = mock(Control.class);
@@ -161,7 +161,7 @@ public class StatusBarToolControlTest
     public void test_redraw_null_and_not_visible()
     {
         StatusBarToolControl underTest = new StatusBarToolControl();
-        StatusBarControlFactory controlFactory = mock(StatusBarControlFactory.class);
+        ControlFactory controlFactory = mock(ControlFactory.class);
         underTest.controlFactory = controlFactory;
         Composite composite = mock(Composite.class);
         Control control1 = mock(Control.class);

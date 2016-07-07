@@ -24,7 +24,7 @@ import org.eclipse.swt.widgets.Listener;
 import org.eclipse.swt.widgets.Menu;
 
 import au.com.cybersearch2.controls.CustomLabelSpec;
-import au.com.cybersearch2.controls.StatusBarControlFactory;
+import au.com.cybersearch2.controls.ControlFactory;
 import au.com.cybersearch2.statusbar.controls.ItemConfiguration;
 
 /**
@@ -287,10 +287,10 @@ public class StatusItem implements LabelItem
     }
     
     /**
-     * @see au.com.cybersearch2.statusbar.LabelItem#labelInstance(au.com.cybersearch2.controls.StatusBarControlFactory, org.eclipse.swt.widgets.Composite)
+     * @see au.com.cybersearch2.statusbar.LabelItem#labelInstance(au.com.cybersearch2.controls.ControlFactory, org.eclipse.swt.widgets.Composite)
      */
     @Override
-    public CLabel labelInstance(StatusBarControlFactory controlFactory,
+    public CLabel labelInstance(ControlFactory controlFactory,
             Composite parent)
     {
         CLabel label = controlFactory.customLabelInstance(parent, new ItemConfiguration(image, text, width));

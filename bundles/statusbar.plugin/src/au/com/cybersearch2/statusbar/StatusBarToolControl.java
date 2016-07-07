@@ -15,7 +15,7 @@ import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Control;
 import org.eclipse.swt.widgets.Shell;
 
-import au.com.cybersearch2.controls.StatusBarControlFactory;
+import au.com.cybersearch2.controls.ControlFactory;
 
 public class StatusBarToolControl 
 {
@@ -26,7 +26,7 @@ public class StatusBarToolControl
     StatusBar statusBar;
     /** SWT widget factory */
     @Inject
-    StatusBarControlFactory controlFactory;
+    ControlFactory controlFactory;
     
     
 	@PostConstruct
