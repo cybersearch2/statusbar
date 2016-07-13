@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <feature
       id="au.com.cybersearch2.statusbar.feature"
-      label="Feature"
+      label="StatusBar Feature"
       version="1.1.0.qualifier"
       provider-name="Cybersearch2 Pty Ltd">
 
    <description url="http://www.cybersearch2.com.au">
-      This feature contains a fragment plugin to add a status line to a pure E4 application. Simply add to the main window a "Window Trim - Bottom" with ID "au.com.cybersearch2.cybertete.trimbar.1".
+      This feature contains a fragment plugin to add a status line to a pure E4 application. Simply add to the main window a &quot;Window Trim - Bottom&quot; with ID &quot;au.com.cybersearch2.cybertete.trimbar.1&quot;.
    </description>
 
    <copyright url="http://www.cybersearch2.com.au">
@@ -14,7 +14,7 @@
    </copyright>
 
    <license url="http://www.example.com/license">
-    This program is free software: you can redistribute it and/or modify
+      This program is free software: you can redistribute it and/or modify
     it under the terms of the GNU General Public License as published by
     the Free Software Foundation, either version 3 of the License, or
     (at your option) any later version. See http://www.gnu.org/licenses/

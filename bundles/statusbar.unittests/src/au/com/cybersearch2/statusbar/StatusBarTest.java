@@ -44,7 +44,6 @@ public class StatusBarTest
     public void test_postConstruct()
     {
         StatusBar underTest = new StatusBar();
-        underTest.postConstruct();
         assertThat(underTest.capacity).isEqualTo(5);
         assertThat(underTest.controlList).isNotNull();
     }
@@ -53,7 +52,6 @@ public class StatusBarTest
     public void test_setToolControl()
     {
         StatusBar underTest = new StatusBar();
-        underTest.postConstruct();
         StatusControl statusControl = mock(StatusControl.class);
         when(statusControl.isVisible()).thenReturn(true);
         StatusItem statusItem = mock(StatusItem.class);
@@ -70,7 +68,6 @@ public class StatusBarTest
     public void test_setCapacity()
     {
         StatusBar underTest = new StatusBar();
-        underTest.postConstruct();
         StatusControl statusControl = mock(StatusControl.class);
         underTest.controlList.add(statusControl);
         underTest.setCapacity(3);
@@ -101,7 +98,6 @@ public class StatusBarTest
     public void test_addStatusItem()
     {
         StatusBar underTest = new StatusBar();
-        underTest.postConstruct();
         StatusItem statusItem = mock(StatusItem.class);
         when(statusItem.getId()).thenReturn(0);
         underTest.addStatusItem(statusItem);
@@ -130,7 +126,6 @@ public class StatusBarTest
     public void test_onUpdate()
     {
         StatusBar underTest = new StatusBar();
-        underTest.postConstruct();
         StatusItem statusItem = mock(StatusItem.class);
         when(statusItem.getId()).thenReturn(0);
         when(statusItem.getText()).thenReturn(TEST_MESSAGE);
@@ -175,7 +170,6 @@ public class StatusBarTest
     public void test_onRedraw()
     {
         StatusBar underTest = new StatusBar();
-        underTest.postConstruct();
         StatusItem statusItem = mock(StatusItem.class);
         when(statusItem.getId()).thenReturn(0);
         StatusBarToolControl statusBarToolControl = mock(StatusBarToolControl.class);

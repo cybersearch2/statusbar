@@ -11,6 +11,7 @@
     </parent>
 
     <modules>
+        <module>statusbar.site</module>
         <module>statusbar.target</module>
     </modules>
 </project>

@@ -30,12 +30,21 @@ import au.com.cybersearch2.statusbar.controls.ItemConfiguration;
 /**
  * StatusItem
  * Configures and controls one status line item, the content of which is rendered using a CLabel widget.
+ * The item can be hidden by calling {@link #hide()} and unhidden using {@link #show()}. 
+ * The item can also be hidden by setting  both image and text to null. 
+ * If the item displays text, then it is recommended to set the width hint to allow for the widest
+ * string so that the item width stays constant. However, the CLabel control will elide text when
+ * there is insuffient space to show the entire string and will place the text in a tooltip, if one
+ * has been provided.
  * @author Andrew Bowley
  * 26 Jun 2016
  * @see org.eclipse.swt.custom.CLabel
  */
 public class StatusItem implements LabelItem
 {
+    /** Allow for ellipsis "..." to be displayed in some extreme cases */
+    static int MIN_TEXT_LENGTH = 3;
+    
     static final Field[] TEXT_FIELD;
     static final Field[] IMAGE_FIELD;
     static final Field[] TEXT_IMAGE_FIELDS;
@@ -80,7 +89,7 @@ public class StatusItem implements LabelItem
     public StatusItem(CustomLabelSpec itemConfiguration, int id)
     {
         this.id = id;
-        setSpecification(itemConfiguration);
+        setConfiguration(itemConfiguration);
     }
     
     /**
@@ -179,33 +188,39 @@ public class StatusItem implements LabelItem
      */
     @Override
     public void setLabel(String text, Image image)
-    {   // This method is is for case where both text and image are both displayed and being updated.
-        // For other cases, using single-argument setters is preferred.
-        boolean labelVisible = 
-                (image != null) && 
-                (text != null) &&
-                !text.isEmpty() &&
-                (this.image != null) && 
-                (this.text != null) && 
-                !this.text.isEmpty();
+    {
         this.text = text;
         this.image = image;
-        if (!updateVisible(getVisibility()))
-        {
-            if (labelVisible)
-                signalUpdate(TEXT_IMAGE_FIELDS);
-            else
-                signalRedraw();
-        }
+        if (!updateVisible(getVisibility()) && isVisible)
+            signalUpdate(TEXT_IMAGE_FIELDS);
     }
 
     /**
+     * Hide this item. Does not change text or image attributes.
+     */
+    public void hide()
+    {
+        isVisible = false;
+        signalRedraw();
+    }
+    
+    /**
+     * Show this item. 
+     * Note that if there is no image or text configured, the item will be blank and 6 pixels wide.
+     */
+    public void show()
+    {
+        if (!isVisible)
+            updateVisible(true);
+    }
+    
+   /**
      * @see au.com.cybersearch2.statusbar.LabelItem#update(au.com.cybersearch2.statusbar.controls.ItemConfiguration)
      */
     @Override
     public void update(CustomLabelSpec updateSpec)
     {
-        setSpecification(updateSpec);
+        setConfiguration(updateSpec);
         signalRedraw();
     }
 
@@ -302,21 +317,23 @@ public class StatusItem implements LabelItem
             label.addListener(eventType, listener);
         if (tooltip != null) 
             label.setToolTipText(tooltip);
-        return label;
+        if (labelListener != null)
+            labelListener.onLabelCreate(label);
+         return label;
     }
 
     /**
      * Set fields from given specification
      * @param itemConfiguration The specification
      */
-    protected void setSpecification(CustomLabelSpec itemConfiguration)
+    protected void setConfiguration(CustomLabelSpec itemConfiguration)
     {
         image = itemConfiguration.getImage();
         text = itemConfiguration.getText();
         width = itemConfiguration.getWidth();
+        isVisible = getVisibility(); 
         font = itemConfiguration.getFont();
         bgColor = itemConfiguration.getBackground();
-        isVisible = getVisibility(); 
     }
  
     /**
@@ -329,6 +346,15 @@ public class StatusItem implements LabelItem
         if (this.isVisible != isVisible)
         {
             this.isVisible = isVisible;
+            // Do not allow empty text to be combined with default width hint,
+            // else no text will possibly be seen until next redraw
+            if (isVisible)
+            {
+                if (!getVisibility()) 
+                    text = "";
+                if ((text != null) && text.isEmpty() && (width < 1))
+                    width = MIN_TEXT_LENGTH;
+            }
             signalRedraw();
             return true;
         }
@@ -341,7 +367,7 @@ public class StatusItem implements LabelItem
      */
     protected boolean getVisibility()
     {
-        return (image != null) || ((text != null) && !text.isEmpty());
+        return (text != null) || (image != null);
     }
 
     /**

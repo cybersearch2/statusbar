@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="ASCII"?>
 <fragment:ModelFragments xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:fragment="http://www.eclipse.org/ui/2010/UIModel/fragment" xmlns:menu="http://www.eclipse.org/ui/2010/UIModel/application/ui/menu" xmi:id="_l4ursPY5EeWwdrzk-TFojQ">
-  <fragments xsi:type="fragment:StringModelFragment" xmi:id="_l4ursfY5EeWwdrzk-TFojQ" featurename="children" parentElementId="au.com.cybersearch2.cybertete.trimbar.1">
+  <fragments xsi:type="fragment:StringModelFragment" xmi:id="_l4ursfY5EeWwdrzk-TFojQ" featurename="children" parentElementId="au.com.cybersearch2.statusline.trimbar">
     <elements xsi:type="menu:ToolControl" xmi:id="_l4ursvY5EeWwdrzk-TFojQ" elementId="au.com.cybersearch2.cybertete.toolcontrol.0" contributionURI="bundleclass://au.com.cybersearch2.statusbar/au.com.cybersearch2.statusbar.StatusBarToolControl"/>
   </fragments>
 </fragment:ModelFragments>

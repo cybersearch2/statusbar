@@ -98,7 +98,7 @@ public class StatusItemTest
     @Test
     public void test_setImage_while_invisible()
     {
-        StatusItem underTest = new StatusItem(new ItemConfiguration(null, "", 0), 0);
+        StatusItem underTest = new StatusItem(new ItemConfiguration(null, null, 0), 0);
         assertThat(underTest.isVisible()).isFalse();
         StatusItemListener statusItemListener = mock(StatusItemListener.class);
         underTest.setLabelItemListener(statusItemListener);
@@ -158,7 +158,7 @@ public class StatusItemTest
     @Test
     public void test_setText_while_invisible()
     {
-        StatusItem underTest = new StatusItem(new ItemConfiguration(null, "", 0), 0);
+        StatusItem underTest = new StatusItem(new ItemConfiguration(null, null, 0), 0);
         assertThat(underTest.isVisible()).isFalse();
         StatusItemListener statusItemListener = mock(StatusItemListener.class);
         underTest.setLabelItemListener(statusItemListener);
@@ -225,8 +225,10 @@ public class StatusItemTest
         assertThat(underTest.isVisible()).isTrue();
         underTest.setText("");
         assertThat(underTest.getText()).isEmpty();
-        assertThat(underTest.isVisible()).isFalse();
-        verify(statusItemListener).onRedraw(underTest);
+        assertThat(underTest.isVisible()).isTrue();
+        assertThat(underTest.getWidth()).isEqualTo(0);
+        verify(statusItemListener, times(0)).onRedraw(underTest);
+        verify(statusItemListener).onUpdate(underTest, new Field[]{Field.text});
     }
 
     @Test
@@ -236,7 +238,21 @@ public class StatusItemTest
         StatusItemListener statusItemListener = mock(StatusItemListener.class);
         underTest.setLabelItemListener(statusItemListener);
         underTest.setText("");
-        verify(statusItemListener, times(0)).onRedraw(underTest);
+        // Special case adjusts width so onUpdate() with text input shows at least ellipsis
+        assertThat(underTest.getWidth()).isEqualTo(3);
+        verify(statusItemListener).onRedraw(underTest);
+        verify(statusItemListener, times(0)).onUpdate(eq(underTest), any(Field[].class));
+    }
+    
+    @Test
+    public void test_setText_empty_while_invisible_with_positive_width()
+    {
+        StatusItem underTest = new StatusItem(new ItemConfiguration(null, null, 1), 0);
+        StatusItemListener statusItemListener = mock(StatusItemListener.class);
+        underTest.setLabelItemListener(statusItemListener);
+        underTest.setText("");
+        assertThat(underTest.getWidth()).isEqualTo(1);
+        verify(statusItemListener).onRedraw(underTest);
         verify(statusItemListener, times(0)).onUpdate(eq(underTest), any(Field[].class));
     }
     
@@ -288,21 +304,25 @@ public class StatusItemTest
     @Test
     public void test_setLabel_redraw()
     {
-        StatusItem underTest = new StatusItem(itemConfiguration, 0);
+        StatusItem underTest = new StatusItem(new ItemConfiguration(null, null, 0), 0);
         StatusItemListener statusItemListener = mock(StatusItemListener.class);
         underTest.setLabelItemListener(statusItemListener);
         Display display = mock(Display.class);
         Image testImage = new Image(display, "icons/black_circle.gif");
-        underTest.setLabel("", testImage);
-        assertThat(underTest.getText()).isEmpty();
+        underTest.setLabel(TEST_MESSAGE, testImage);
+        assertThat(underTest.getText()).isEqualTo(TEST_MESSAGE);
         verify(statusItemListener).onRedraw(underTest);
-        underTest.setLabel(null, testImage);
+        statusItemListener = mock(StatusItemListener.class);
+        underTest.setLabelItemListener(statusItemListener);
+        underTest.setLabel(null, null);
         assertThat(underTest.getText()).isNull();
-        verify(statusItemListener, times(2)).onRedraw(underTest);
+        verify(statusItemListener).onRedraw(underTest);
+        statusItemListener = mock(StatusItemListener.class);
+        underTest.setLabelItemListener(statusItemListener);
         underTest.setLabel(TEST_MESSAGE, null);
         assertThat(underTest.getText()).isEqualTo(TEST_MESSAGE);
         assertThat(underTest.getImage()).isNull();
-        verify(statusItemListener, times(3)).onRedraw(underTest);
+        verify(statusItemListener).onRedraw(underTest);
         underTest = new StatusItem(new ItemConfiguration(null, null, 0), 0);
         statusItemListener = mock(StatusItemListener.class);
         underTest.setLabelItemListener(statusItemListener);

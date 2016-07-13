@@ -18,8 +18,6 @@ package au.com.cybersearch2.statusbar;
 import java.util.ArrayList;
 import java.util.List;
 
-import javax.annotation.PostConstruct;
-
 import org.eclipse.swt.custom.CLabel;
 
 import au.com.cybersearch2.statusbar.LabelItem.Field;
@@ -44,10 +42,9 @@ public class StatusBar implements StatusItemListener
     StatusBarToolControl statusBarToolControl;
  
     /**
-     * postConstruct
+     * Construct a StatusBar object
      */
-    @PostConstruct
-    void postConstruct()
+    public StatusBar()
     {
         capacity = DEFAULT_MAX_ITEMS;
         controlList = new ArrayList<StatusControl>(DEFAULT_MAX_ITEMS);
@@ -175,14 +172,7 @@ public class StatusBar implements StatusItemListener
         for (StatusControl statusControl: controlList)
         {
             if ((statusControl != null) && (statusControl.isVisible()))
-            {
-                StatusItem statusItem = statusControl.getStatusItem();
-                if (statusItem.getLabelListener() != null)
-                {
-                    CLabel label = statusControl.getLabel();
-                    statusItem.getLabelListener().onLabelCreate(label);
-                }
-            }
+                statusControl.getStatusItem();
         }
     }
 }
