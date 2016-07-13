@@ -23,7 +23,12 @@
    <layout>p2</layout>
   </repository>
  </repositories>
-
+ <distributionManagement>
+    <repository>
+        <id>pdrone.eb1c2e2e-fc6a-43d9-ba73-2da11dd30218</id>
+        <url>http://localhost:8080/maven/eb1c2e2e-fc6a-43d9-ba73-2da11dd30218</url>
+    </repository>
+ </distributionManagement>
  <build>
   <plugins>
   <!-- Skip the install, since we do not need the artifacts in our local mvn repo -->
