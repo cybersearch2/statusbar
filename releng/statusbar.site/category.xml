@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<site>
+   <feature id="au.com.cybersearch2.statusbar.feature" version="0.0.0">
+      <category name="au.com.cybersearch2.statusbar.category"/>
+   </feature>
+   <feature id="au.com.cybersearch2.statusbar.feature.source" version="0.0.0">
+      <category name="au.com.cybersearch2.statusbar.source.category"/>
+   </feature>
+   <category-def name="au.com.cybersearch2.statusbar.category" label="StatusBar Repository">
+      <description>
+         StatusBar Repository
+      </description>
+   </category-def>
+   <category-def name="au.com.cybersearch2.statusbar.source.category" label="StatusBar Repository (Sources)">
+      <description>
+         StatusBar Repository (Sources)
+      </description>
+   </category-def>
+</site>
