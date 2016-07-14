@@ -11,8 +11,8 @@
 	<packaging>eclipse-repository</packaging>
     <properties>
         <maven.deploy.skip>false</maven.deploy.skip>
-   </properties>
-   <build>
+    </properties>
+    <build>
        <plugins>
           <plugin>
              <groupId>org.eclipse.tycho</groupId>

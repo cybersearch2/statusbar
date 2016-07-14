@@ -15,13 +15,20 @@
   <!-- Skip the deployment here, submodules can override this property -->
   <maven.deploy.skip>true</maven.deploy.skip>
   <local.deploy.id>pdrone.eb1c2e2e-fc6a-43d9-ba73-2da11dd30218</local.deploy.id>
-  <local.deploy.url>http://microserver:8080/maven/eb1c2e2e-fc6a-43d9-ba73-2da11dd30218</local.deploy.url>
+  <local.deploy.url>http://MicroServer:8098/maven/eb1c2e2e-fc6a-43d9-ba73-2da11dd30218</local.deploy.url>
+  <local-repo.id>pdrone.Test</local-repo.id>
+  <local-repo.url>http://MicroServer:8098/p2/control-factory/</local-repo.url>
  </properties>
 
  <repositories>
   <repository>
    <id>eclipse-repo</id>
    <url>${eclipse-repo.url}</url>
+   <layout>p2</layout>
+  </repository>
+  <repository>
+   <id>${local-repo.id}</id>
+   <url>${local-repo.url}</url>
    <layout>p2</layout>
   </repository>
  </repositories>

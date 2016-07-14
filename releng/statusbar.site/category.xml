@@ -6,6 +6,12 @@
    <feature id="au.com.cybersearch2.statusbar.feature.source" version="0.0.0">
       <category name="au.com.cybersearch2.statusbar.source.category"/>
    </feature>
+   <feature id="au.com.cybersearch2.control_factory.feature" version="0.0.0">
+      <category name="au.com.cybersearch2.statusbar.category"/>
+   </feature>
+   <feature id="au.com.cybersearch2.control_factory.feature.source" version="0.0.0">
+      <category name="au.com.cybersearch2.statusbar.source.category"/>
+   </feature>
    <category-def name="au.com.cybersearch2.statusbar.category" label="StatusBar Repository">
       <description>
          StatusBar Repository
