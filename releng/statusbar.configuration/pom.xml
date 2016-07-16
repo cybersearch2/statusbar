@@ -14,9 +14,9 @@
   <eclipse-repo.url>http://download.eclipse.org/eclipse/updates/4.5</eclipse-repo.url>
   <!-- Skip the deployment here, submodules can override this property -->
   <maven.deploy.skip>true</maven.deploy.skip>
-  <local.deploy.id>pdrone.eb1c2e2e-fc6a-43d9-ba73-2da11dd30218</local.deploy.id>
-  <local.deploy.url>http://MicroServer:8098/maven/eb1c2e2e-fc6a-43d9-ba73-2da11dd30218</local.deploy.url>
-  <local-repo.id>pdrone.Test</local-repo.id>
+  <local.deploy.id>pdrone.a949df7f-96a3-4e5a-b329-f045192b7772</local.deploy.id>
+  <local.deploy.url>http://MicroServer:8098/maven/a949df7f-96a3-4e5a-b329-f045192b7772</local.deploy.url>
+  <local-repo.id>pdrone.control-factory</local-repo.id>
   <local-repo.url>http://MicroServer:8098/p2/control-factory/</local-repo.url>
  </properties>
 
