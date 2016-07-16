@@ -84,6 +84,7 @@ interface LabelItem
 
     /**
      * Set both text and image
+     * @param text String
      * @param image Image object
      */
     void setLabel(String text, Image image);

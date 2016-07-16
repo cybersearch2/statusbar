@@ -18,8 +18,6 @@ package au.com.cybersearch2.statusbar;
 import java.util.ArrayList;
 import java.util.List;
 
-import org.eclipse.swt.custom.CLabel;
-
 import au.com.cybersearch2.statusbar.LabelItem.Field;
 
 /**

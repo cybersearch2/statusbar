@@ -189,10 +189,12 @@ public class StatusItem implements LabelItem
     @Override
     public void setLabel(String text, Image image)
     {
-        this.text = text;
-        this.image = image;
-        if (!updateVisible(getVisibility()) && isVisible)
+        boolean forceRedraw = updateLabel(text, image);
+        boolean visibilityChanged = updateVisible(getVisibility());
+        if (!forceRedraw && !visibilityChanged && isVisible)
             signalUpdate(TEXT_IMAGE_FIELDS);
+        else if (!visibilityChanged)
+            signalRedraw();
     }
 
     /**
@@ -335,7 +337,33 @@ public class StatusItem implements LabelItem
         font = itemConfiguration.getFont();
         bgColor = itemConfiguration.getBackground();
     }
- 
+
+    /**
+     * Update text and image
+     * @param text String
+     * @param image Image object
+     * @return flag set true if redraw required
+     */
+    protected boolean updateLabel(String text, Image image)
+    {
+        boolean forceRedraw = false;
+        boolean hide = false;
+        boolean show = false;
+        if ((image == null) && (this.image != null))
+            forceRedraw = true;
+        else if ((this.image == null) && (image != null))
+            forceRedraw = true;
+        else
+        {
+            hide = (text == null) && (image == null); 
+            show = (this.text == null) && (this.image == null); 
+            forceRedraw = (hide && !show) || (show && !hide);
+        } 
+        this.text = text;
+        this.image = image;
+        return forceRedraw;
+    }
+    
     /**
      * Update isVisible flag if different from given value. Redraw on change of visibility.
      * @param isVisible boolean
