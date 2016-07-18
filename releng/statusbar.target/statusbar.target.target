@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<?pde version="3.8"?><target name="statusbar.target" sequenceNumber="6">
+<?pde version="3.8"?><target name="statusbar.target" sequenceNumber="8">
 <locations>
 <location includeAllPlatforms="true" includeConfigurePhase="false" includeMode="slicer" includeSource="true" type="InstallableUnit">
 <unit id="org.eclipse.ecf.core.feature.feature.group" version="1.2.0.v20151130-0157"/>
@@ -13,7 +13,7 @@
 <location includeAllPlatforms="true" includeConfigurePhase="false" includeMode="slicer" includeSource="true" type="InstallableUnit">
 <unit id="au.com.cybersearch2.control_factory.feature.feature.group" version="1.1.0.201607151040"/>
 <unit id="au.com.cybersearch2.control_factory.feature.source.feature.group" version="1.1.0.201607151040"/>
-<repository location="http://microserver:8098/p2/control-factory/"/>
+<repository location="https://dl.bintray.com/content/andrew-bowley/generic/Control_Factory/V1.1.0/"/>
 </location>
 </locations>
 </target>

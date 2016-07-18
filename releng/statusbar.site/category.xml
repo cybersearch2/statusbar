@@ -12,14 +12,14 @@
    <feature id="au.com.cybersearch2.control_factory.feature.source" version="0.0.0">
       <category name="au.com.cybersearch2.statusbar.source.category"/>
    </feature>
-   <category-def name="au.com.cybersearch2.statusbar.category" label="StatusBar Repository">
+   <category-def name="au.com.cybersearch2.statusbar.category" label="StatusBar">
       <description>
-         StatusBar Repository
+         StatusBar
       </description>
    </category-def>
-   <category-def name="au.com.cybersearch2.statusbar.source.category" label="StatusBar Repository (Sources)">
+   <category-def name="au.com.cybersearch2.statusbar.source.category" label="StatusBar (Sources)">
       <description>
-         StatusBar Repository (Sources)
+         StatusBar (Sources)
       </description>
    </category-def>
 </site>
