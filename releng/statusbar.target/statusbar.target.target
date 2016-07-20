@@ -11,9 +11,9 @@
 <repository location="http://download.eclipse.org/eclipse/updates/4.5"/>
 </location>
 <location includeAllPlatforms="true" includeConfigurePhase="false" includeMode="slicer" includeSource="true" type="InstallableUnit">
-<unit id="au.com.cybersearch2.control_factory.feature.feature.group" version="1.1.0.201607151040"/>
-<unit id="au.com.cybersearch2.control_factory.feature.source.feature.group" version="1.1.0.201607151040"/>
-<repository location="https://dl.bintray.com/content/andrew-bowley/generic/Control_Factory/V1.1.0/"/>
+<unit id="au.com.cybersearch2.control_factory.feature.feature.group" version="1.2.0.201607150812"/>
+<unit id="au.com.cybersearch2.control_factory.feature.source.feature.group" version="1.2.0.201607150812"/>
+<repository location="http://MicroServer:8098/p2/control-factory-SNAPSHOT/"/>
 </location>
 </locations>
 </target>

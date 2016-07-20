@@ -1,12 +1,12 @@
 <project>
  <modelVersion>4.0.0</modelVersion>
  <artifactId>statusbar.root</artifactId>
- <version>1.1.0-SNAPSHOT</version>
+ <version>1.2.0-SNAPSHOT</version>
  <packaging>pom</packaging>
  <parent>
    <groupId>au.com.cybersearch2</groupId>
    <artifactId>statusbar.configuration</artifactId>
-   <version>1.1.0-SNAPSHOT</version>
+   <version>1.2.0-SNAPSHOT</version>
    <relativePath>./releng/statusbar.configuration</relativePath>
  </parent>
   <url>http://cybersearch2.com.au</url>
@@ -23,18 +23,6 @@
     <developerConnection>scm:git:ssh://git@gitserver:/opt/git/statusbar.git</developerConnection>
     <tag>HEAD</tag>
   </scm>
-  <distributionManagement>
-    <repository>
-        <id>${release.repo.id}</id>
-        <name>repo-releases</name>
-        <url>${release.repo.url}</url>
-    </repository>
-    <snapshotRepository>
-        <id>${snapshot.repo.id}</id>
-        <name>repo-snapshots</name>
-        <url>${snapshot.repo.url}</url>
-    </snapshotRepository>
-  </distributionManagement>  
   <developers>
     <developer>
       <id>andrew-bowley</id>
@@ -49,12 +37,6 @@
       <timezone>+10</timezone>
     </developer>
   </developers>
-  <properties>
-    <release.repo.id>artifactory</release.repo.id>
-    <release.repo.url>http://microserver/artifactory/libs-release-local</release.repo.url>
-    <snapshot.repo.id>artifactory</snapshot.repo.id>
-    <snapshot.repo.url>http://microserver/artifactory/libs-snapshot-local</snapshot.repo.url>
- </properties>
  <modules>
    <module>test</module>
    <module>bundles</module>
@@ -72,7 +54,7 @@
         <artifact>
             <groupId>au.com.cybersearch2</groupId>
             <artifactId>statusbar.target</artifactId>
-            <version>1.1.0-SNAPSHOT</version>
+            <version>1.2.0-SNAPSHOT</version>
         </artifact>
     </target>     
     <environments>

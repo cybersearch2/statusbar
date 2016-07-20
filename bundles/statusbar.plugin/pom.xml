@@ -3,17 +3,20 @@
     <parent>
         <groupId>au.com.cybersearch2</groupId>
         <artifactId>statusbar.bundles</artifactId>
-        <version>1.1.0-SNAPSHOT</version>
+        <version>1.2.0-SNAPSHOT</version>
     </parent>
     <artifactId>au.com.cybersearch2.statusbar</artifactId>
-    <version>1.1.0-SNAPSHOT</version>
+    <version>1.2.0-SNAPSHOT</version>
     <packaging>eclipse-plugin</packaging>
-
-    <properties>
-        <maven.deploy.skip>false</maven.deploy.skip>
-    </properties>
     <build>
       <plugins>
+       <plugin>
+            <groupId>org.apache.maven.plugins</groupId>
+            <artifactId>maven-install-plugin</artifactId>
+            <configuration>
+        	  <skip>false</skip>
+            </configuration>
+       </plugin>
        <plugin>
         <groupId>org.apache.maven.plugins</groupId>
         <artifactId>maven-javadoc-plugin</artifactId>

@@ -3,7 +3,7 @@
  <modelVersion>4.0.0</modelVersion>
  <groupId>au.com.cybersearch2</groupId>
  <artifactId>statusbar.configuration</artifactId>
- <version>1.1.0-SNAPSHOT</version>
+ <version>1.2.0-SNAPSHOT</version>
  <packaging>pom</packaging>
 
  <properties>
@@ -11,32 +11,40 @@
   <tycho-extras.version>0.25.0</tycho-extras.version>
   <felix.version>3.0.1</felix.version>
   <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-  <eclipse-repo.url>http://download.eclipse.org/eclipse/updates/4.5</eclipse-repo.url>
+  <eclipse.repo.url>http://download.eclipse.org/eclipse/updates/4.5</eclipse.repo.url>
   <!-- Skip the deployment here, submodules can override this property -->
   <maven.deploy.skip>true</maven.deploy.skip>
-  <local.deploy.id>pdrone.a949df7f-96a3-4e5a-b329-f045192b7772</local.deploy.id>
-  <local.deploy.url>http://MicroServer:8098/maven/a949df7f-96a3-4e5a-b329-f045192b7772</local.deploy.url>
-  <local-repo.id>pdrone.control-factory</local-repo.id>
-  <local-repo.url>http://MicroServer:8098/p2/control-factory/</local-repo.url>
+  <release.deploy.id>pdrone.a949df7f-96a3-4e5a-b329-f045192b7772</release.deploy.id>
+  <release.deploy.url>http://MicroServer:8098/maven/a949df7f-96a3-4e5a-b329-f045192b7772</release.deploy.url>
+  <snapshot.deploy.id>pdrone.abe5b3ba-ccc9-453e-bb82-50605fda1b2d</snapshot.deploy.id>
+  <snapshot.deploy.url>http://MicroServer:8098/maven/abe5b3ba-ccc9-453e-bb82-50605fda1b2d</snapshot.deploy.url>
+  <release.repo.id>pdrone.control-factory</release.repo.id>
+  <release.repo.url>http://MicroServer:8098/p2/control-factory/</release.repo.url>
+  <snapshot.repo.id>pdrone.control-factory-SNAPSHOT</snapshot.repo.id>
+  <snapshot.repo.url>http://MicroServer:8098/p2/control-factory-SNAPSHOT/</snapshot.repo.url>
  </properties>
 
  <repositories>
   <repository>
    <id>eclipse-repo</id>
-   <url>${eclipse-repo.url}</url>
+   <url>${eclipse.repo.url}</url>
    <layout>p2</layout>
   </repository>
   <repository>
-   <id>${local-repo.id}</id>
-   <url>${local-repo.url}</url>
+   <id>${snapshot.repo.id}</id>
+   <url>${snapshot.repo.url}</url>
    <layout>p2</layout>
   </repository>
  </repositories>
  <distributionManagement>
     <repository>
-        <id>${local.deploy.id}</id>
-        <url>${local.deploy.url}</url>
+        <id>${release.deploy.id}</id>
+        <url>${release.deploy.url}</url>
     </repository>
+    <snapshotRepository>
+        <id>${snapshot.deploy.id}</id>
+        <url>${snapshot.deploy.url}</url>
+    </snapshotRepository>
  </distributionManagement>
  <build>
   <plugins>
@@ -190,6 +198,21 @@
  </pluginManagement>
  </build>
  <profiles>
+   <profile>
+     <id>release</id>
+     <repositories>
+      <repository>
+       <id>eclipse.repo</id>
+       <url>${eclipse.repo.url}</url>
+       <layout>p2</layout>
+      </repository>
+      <repository>
+       <id>${release.repo.id}</id>
+       <url>${release.repo.url}</url>
+       <layout>p2</layout>
+      </repository>
+     </repositories>
+   </profile>
     <!-- SWT bundle used for unit testing depends on running platform. -->
   <profile>
     <id>32bit-windows</id>
