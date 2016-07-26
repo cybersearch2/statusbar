@@ -3,7 +3,7 @@
 ## Introduction
 
 Statusbar is a fragment plugin which adds a status line to a pure E4 application.
-Using the Eclipse 4 Model Editor, simply add to the main window a "Window Trim - Bottom" with ID "au.com.cybersearch2.cybertete.trimbar.1".
+Using the Eclipse 4 Model Editor, simply add to the main window a "Window Trim - Bottom" with ID "au.com.cybersearch2.statusline.trimbar".
 Here is an example:
 
 
@@ -11,11 +11,15 @@ Here is an example:
 Format: ![Eclipse 4 Model Editor](url)
 
  
-The plugin expects to find a class in the Eclipse context which implements interface **au.com.cybersearch2.statusbar.IStatusBar**.
-This interface requires two overrides:
+For information on Statusbar, go to our [support site] (www.cybersearch2.com.au/eclipse).
 
-1. '<StatusLine getStatusLine(Composite parent)>`
+This plugin is a spin off from the development of the Cybertete Rich Client Platform (RCP) Instant Messaging Client
+which is a research project into how to utilize the latest E4 technologies. Statusbar originated as
+an integral part of Cybertete, but moving the status line implmentation to to a separate plugin seemed a
+worthy project for code reuse. Hence Statusbar was created. The original design has been enhanced to increase flexibility 
+and should be readily droped into any E4 RCP application. 
+The plugin is available online in P2 repository [https://dl.bintray.com/andrew-bowley/generic/Statusbar/V1.1.0] (https://dl.bintray.com/andrew-bowley/generic/Statusbar/V1.1.0). 
 
-2. '<List<StatusLineContribution> getContributions()>`
-
-The getStatusLine() method returns 
+Available from the same P2 repository is the companion Control Factory plugin, a Statusbar dependency which facilitates unit testing
+where code uses the Standard Widget Toolkit (SWT) - the Eclipse portable Graphics library. 
+ 
