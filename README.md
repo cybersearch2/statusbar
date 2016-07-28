@@ -8,7 +8,6 @@ Here is an example:
 
 
 ![Eclipse 4 Model Editor](/images/model-editor.png)
-Format: ![Eclipse 4 Model Editor](url)
 
  
 For information on Statusbar, go to our [support site] (www.cybersearch2.com.au/eclipse).
