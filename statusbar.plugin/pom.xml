@@ -3,10 +3,10 @@
     <parent>
         <groupId>au.com.cybersearch2</groupId>
         <artifactId>statusbar.root</artifactId>
-        <version>1.2.0-SNAPSHOT</version>
+        <version>1.2.1-SNAPSHOT</version>
     </parent>
     <artifactId>au.com.cybersearch2.statusbar</artifactId>
-    <version>1.2.0-SNAPSHOT</version>
+    <version>1.2.1-SNAPSHOT</version>
     <packaging>eclipse-plugin</packaging>
     <dependencies>
 				<dependency>

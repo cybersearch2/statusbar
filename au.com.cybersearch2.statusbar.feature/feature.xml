@@ -2,7 +2,7 @@
 <feature
       id="au.com.cybersearch2.statusbar.feature"
       label="StatusBar Feature"
-      version="1.2.0.qualifier"
+      version="1.2.1.qualifier"
       provider-name="Cybersearch2 Pty Ltd">
 
    <description url="http://www.cybersearch2.com.au">
