@@ -181,7 +181,7 @@
 					<version>1.11.1</version>
 					<configuration>
 					  <connectionType>connection</connectionType>
-					  <tag>CStatusbar-${project.version}</tag>
+					  <tag>Statusbar-${project.version}</tag>
 					</configuration>
 				 </plugin>
          <plugin>
