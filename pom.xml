@@ -1,14 +1,9 @@
 <project>
  <modelVersion>4.0.0</modelVersion>
+ <groupId>au.com.cybersearch2</groupId>
  <artifactId>statusbar.root</artifactId>
  <version>1.2.0-SNAPSHOT</version>
  <packaging>pom</packaging>
- <parent>
-   <groupId>au.com.cybersearch2</groupId>
-   <artifactId>statusbar.configuration</artifactId>
-   <version>1.2.0-SNAPSHOT</version>
-   <relativePath>./releng/statusbar.configuration</relativePath>
- </parent>
   <url>http://cybersearch2.com.au</url>
   <licenses>
      <license>
@@ -17,12 +12,6 @@
        <distribution>repo</distribution>
      </license>
   </licenses>
-  <scm>
-	<url>https://github.com/andrew-bowley/statusbar</url>
-	<connection>scm:git:ssh://git@github.com/andrew-bowley/statusbar.git</connection>
-    <developerConnection>scm:git:ssh://git@gitserver:/opt/git/statusbar.git</developerConnection>
-    <tag>HEAD</tag>
-  </scm>
   <developers>
     <developer>
       <id>andrew-bowley</id>
@@ -37,15 +26,111 @@
       <timezone>+10</timezone>
     </developer>
   </developers>
- <modules>
-   <module>test</module>
-   <module>bundles</module>
-   <module>features</module>
-   <module>releng</module>
- </modules>
- <build>
-  <plugins>
-    <plugin>
+  <properties>
+      <tycho.version>1.3.0</tycho.version>
+      <tycho-extras.version>1.3.0</tycho-extras.version>
+      <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+      <!-- Skip the deployment here, submodules can override this property -->
+      <maven.deploy.skip>true</maven.deploy.skip>
+      <repo.id>pdrone.25f27e91-2067-4fb2-ab2d-dc07a2359b5f</repo.id>
+      <repo.url>http://micro-pro:8098/maven/25f27e91-2067-4fb2-ab2d-dc07a2359b5f</repo.url>
+  </properties>
+  <scm>
+	  <url>https://github.com/andrew-bowley/statusbar</url>
+	  <connection>scm:git:ssh://git@micro-pro.cybersearch2.com/srv/git/statusbar.git</connection>
+    <tag>HEAD</tag>
+  </scm>
+  <distributionManagement>
+    <repository>
+        <id>${repo.id}</id>
+        <url>$repo.url}</url>
+    </repository>
+  </distributionManagement>
+   <modules>
+   <module>statusbar.plugin</module>
+   <module>au.com.cybersearch2.statusbar.feature</module>
+   <module>statusbar.site</module>
+   <module>statusbar.target</module>
+  </modules>
+  <build>
+   <plugins>
+  <!-- Skip the install, since we do not need the artifacts in our local mvn repo -->
+  <plugin>
+    <groupId>org.apache.maven.plugins</groupId>
+    <artifactId>maven-install-plugin</artifactId>
+    <configuration>
+	  <skip>true</skip>
+    </configuration>
+  </plugin>
+   <plugin>
+    <groupId>org.eclipse.tycho</groupId>
+    <artifactId>tycho-maven-plugin</artifactId>
+    <version>${tycho.version}</version>
+    <extensions>true</extensions>
+   </plugin>
+   <!-- enable source feature generation -->
+   <plugin>
+	<groupId>org.eclipse.tycho.extras</groupId>
+	<artifactId>tycho-source-feature-plugin</artifactId>
+	<version>${tycho.version}</version>
+	<executions>
+		<execution>
+			<id>source-feature</id>
+			<phase>package</phase>
+			<goals>
+				<goal>source-feature</goal>
+			</goals>
+		</execution>
+	</executions>
+   </plugin>
+   <plugin>
+	   <groupId>org.eclipse.tycho</groupId>
+	   <artifactId>tycho-source-plugin</artifactId>
+	   <version>${tycho.version}</version>
+	   <executions>
+		   <execution>
+			   <id>plugin-source</id>
+			   <goals>
+				   <goal>plugin-source</goal>
+			   </goals>
+		   </execution>
+	   </executions>
+   </plugin>
+   <plugin>
+		<groupId>org.eclipse.tycho</groupId>
+		<artifactId>tycho-p2-plugin</artifactId>
+		<version>${tycho.version}</version>
+		<executions>
+			<execution>
+				<id>attach-p2-metadata</id>
+				<phase>package</phase>
+				<goals>
+					<goal>p2-metadata</goal>
+				</goals>
+			</execution>
+		</executions>
+	</plugin>
+  <plugin>
+    <groupId>org.eclipse.tycho</groupId>
+    <artifactId>tycho-packaging-plugin</artifactId>
+    <version>${tycho.version}</version>
+    <dependencies>
+     <dependency>
+      <groupId>org.eclipse.tycho.extras</groupId>
+      <artifactId>tycho-buildtimestamp-jgit</artifactId>
+      <version>${tycho-extras.version}</version>
+    </dependency>
+   </dependencies>
+   <configuration>
+     <timestampProvider>jgit</timestampProvider>
+     <jgit.ignore>
+       pom.xml
+       target/
+    </jgit.ignore>
+    <jgit.dirtyWorkingTree>ignore</jgit.dirtyWorkingTree>
+   </configuration>
+ </plugin>
+ <plugin>
     <groupId>org.eclipse.tycho</groupId>
     <artifactId>target-platform-configuration</artifactId>
     <version>${tycho.version}</version>
@@ -89,5 +174,135 @@
     </configuration>
    </plugin>
   </plugins>
- </build>
- </project>
+   <pluginManagement>
+	  <plugins>
+		  <plugin>
+			<artifactId>maven-scm-plugin</artifactId>
+			<version>1.11.1</version>
+			<configuration>
+			  <connectionType>connection</connectionType>
+			  <tag>CStatusbar-${project.version}</tag>
+			</configuration>
+		 </plugin>
+         <plugin>
+            <groupId>org.apache.maven.plugins</groupId>
+            <artifactId>maven-compiler-plugin</artifactId>
+            <version>3.8.0</version>
+            <configuration>
+                <source>${project.java.version}</source>
+                <target>${project.java.version}</target>
+                <encoding>${project.build.sourceEncoding}</encoding>
+            </configuration>
+          </plugin>
+          <plugin>
+             <groupId>org.codehaus.mojo</groupId>  
+             <artifactId>versions-maven-plugin</artifactId>  
+             <version>2.7</version>  
+          </plugin>     
+          <plugin>
+             <groupId>org.apache.maven.plugins</groupId>
+             <artifactId>maven-clean-plugin</artifactId>
+             <version>3.1.0</version>
+          </plugin>
+	        <plugin>
+            <groupId>org.apache.maven.plugins</groupId>
+            <artifactId>maven-install-plugin</artifactId>
+            <version>3.0.0-M1</version>
+          </plugin>
+				  <plugin>
+					  <artifactId>maven-resources-plugin</artifactId>
+					  <version>3.1.0</version>
+					  <configuration>
+		            <encoding>${project.build.sourceEncoding}</encoding>
+					  </configuration>
+				  </plugin>
+         <plugin>
+             <groupId>org.apache.maven.plugins</groupId>
+             <artifactId>maven-source-plugin</artifactId>
+             <version>3.0.1</version>
+         </plugin>       
+         <plugin>
+            <groupId>org.apache.maven.plugins</groupId>
+            <artifactId>maven-javadoc-plugin</artifactId>
+            <version>3.0.1</version>
+         </plugin>
+         <plugin>
+            <groupId>org.apache.maven.plugins</groupId>
+            <artifactId>maven-deploy-plugin</artifactId>
+            <version>3.0.0-M1</version>
+          </plugin>
+          <plugin>
+            <groupId>org.apache.maven.plugins</groupId>
+            <artifactId>maven-dependency-plugin</artifactId>
+            <version>3.1.1</version>
+          </plugin>
+          <plugin>
+            <groupId>org.apache.maven.plugins</groupId>
+            <artifactId>maven-surefire-plugin</artifactId>
+            <version>3.0.0-M3</version>
+          </plugin>
+		    </plugins>
+			</pluginManagement>
+  </build>
+  <reporting>
+    <plugins>
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-javadoc-plugin</artifactId>
+        <version>2.10.1</version>
+        <configuration>
+            <show>public</show>
+            <author>true</author>
+            <version>true</version>
+            <doctitle><![CDATA[<h1>statusbar Eclipse E4 plugin</h1>]]></doctitle>
+            <windowtitle>statusbar API - Eclipse E4 Component</windowtitle> 
+            <bottom>
+               This documentation is licensed by Andrew Bowley under the
+               &lt;a
+               href="http://www.gnu.org/licenses/" &gt;GPLv3 License.
+               &lt;/a&gt; 
+            </bottom>
+            <links>
+               <link>http://docs.oracle.com/javase/8/docs/api/</link>
+            </links>
+            <additionalparam>-tag inheritDoc:X</additionalparam>
+        </configuration>
+      </plugin>
+    </plugins>
+  </reporting>
+ <profiles>
+   <profile>
+      <id>doclint-java8-disable</id>
+      <activation>
+        <jdk>[1.8,)</jdk>
+      </activation>
+      <build>
+        <plugins>
+          <plugin>
+            <groupId>org.apache.maven.plugins</groupId>
+            <artifactId>maven-javadoc-plugin</artifactId>
+            <configuration>
+              <additionalparam>-Xdoclint:none</additionalparam>
+            </configuration>
+          </plugin>
+          <plugin>
+            <groupId>org.apache.maven.plugins</groupId>
+            <artifactId>maven-site-plugin</artifactId>
+            <version>3.3</version>
+           </plugin>
+        </plugins>
+      </build>
+      <reporting>
+          <plugins>
+            <plugin>
+              <groupId>org.apache.maven.plugins</groupId>
+              <artifactId>maven-javadoc-plugin</artifactId>
+              <configuration>
+                <additionalparam>-Xdoclint:none</additionalparam>
+              </configuration>
+            </plugin>
+          </plugins>
+       </reporting>
+    </profile>
+ </profiles>
+</project>

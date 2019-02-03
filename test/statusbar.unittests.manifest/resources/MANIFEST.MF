@@ -1,5 +1,0 @@
-Manifest-Version: 1.0
-Bundle-ManifestVersion: 2
-Bundle-Name: Unittests
-Bundle-SymbolicName: statusbar.unittests;singleton:=true
-Bundle-RequiredExecutionEnvironment: JavaSE-1.7

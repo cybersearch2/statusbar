@@ -17,7 +17,7 @@ which is a research project into how to utilize the latest E4 technologies. Stat
 an integral part of Cybertete, but moving the status line implmentation to to a separate plugin seemed a
 worthy project for code reuse. Hence Statusbar was created. The original design has been enhanced to increase flexibility 
 and should be readily dropped into any E4 RCP application. 
-The plugin is available online in P2 repository [https://dl.bintray.com/andrew-bowley/generic/Statusbar/V1.1.0] (https://dl.bintray.com/andrew-bowley/generic/Statusbar/V1.1.0). 
+The plugin is available online in P2 repository [https://dl.bintray.com/andrew-bowley/generic/Statusbar/V1.2.1] (https://dl.bintray.com/andrew-bowley/generic/Statusbar/V1.2.1). 
 
 Available from the same P2 repository is the companion Control Factory plugin, a Statusbar dependency which facilitates unit testing
 where code uses the Standard Widget Toolkit (SWT) - the Eclipse portable Graphics library. 
