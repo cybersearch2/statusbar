@@ -4,7 +4,7 @@
     <parent>
         <groupId>au.com.cybersearch2</groupId>
         <artifactId>statusbar.root</artifactId>
-        <version>1.3.1-SNAPSHOT</version>
+        <version>1.3.2-SNAPSHOT</version>
     </parent>
     <artifactId>au.com.cybersearch2.statusbar</artifactId>
     <packaging>eclipse-plugin</packaging>
